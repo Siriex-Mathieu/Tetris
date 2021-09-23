@@ -8,6 +8,8 @@ public class tetrisBlock : MonoBehaviour
     public float fallTime = 0.8f;
     private static int height = 40;
     private static int width = 20;
+
+    public Vector3 RotationBlock;
     // Start is called before the first frame update
     void Start()
     {  
@@ -32,6 +34,13 @@ public class tetrisBlock : MonoBehaviour
                 transform.position -= new Vector3(1,0,0);
 
         }
+        else if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            transform.RotateAround(transform.TransformPoint(RotationBlock),new Vector3(0,0,1),90);
+            if(!ValidMove())
+                 transform.RotateAround(transform.TransformPoint(RotationBlock),new Vector3(0,0,1),-90);
+
+        }
 
         if(Time.time - previousTime > (Input.GetKey(KeyCode.DownArrow) ? fallTime / 10 : fallTime))
         {
@@ -40,6 +49,7 @@ public class tetrisBlock : MonoBehaviour
                 transform.position -= new Vector3(0,-1,0);
             previousTime = Time.time;
         }
+    
     }
     bool ValidMove()
     {
