@@ -6,6 +6,8 @@ public class tetrisBlock : MonoBehaviour
 {
     private float previousTime;
     public float fallTime = 0.8f;
+    private static int height = 20;
+    private static int width = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +31,19 @@ public class tetrisBlock : MonoBehaviour
             transform.position += new Vector3(0,-1,0);
             previousTime = Time.time;
         }
+    }
+    bool ValiMove()
+    {
+        foreach (Transfrom children in transform)
+        {
+            int roundedX = Mathf.roundeToInt(children.transform.position.x);
+            int roundedY = Mathf.roundeToInt(children.transform.position.y);
+
+            if(roundedX<0 || roundedX>= width || roundedY< 0 || roundedY>+height)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
