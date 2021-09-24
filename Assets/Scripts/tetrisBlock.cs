@@ -9,6 +9,8 @@ public class tetrisBlock : MonoBehaviour
     private static int height = 40;
     private static int width = 20;
 
+    private static Transform[,] grid = new Transform[width,height];
+
     public Vector3 RotationBlock;
     // Start is called before the first frame update
     void Start()
@@ -46,10 +48,24 @@ public class tetrisBlock : MonoBehaviour
         {
             transform.position += new Vector3(0,-1,0);
              if(!ValidMove())
+             {
                 transform.position -= new Vector3(0,-1,0);
+               AddToGrid();
+                this.enabled = false;
+                FindObjectOfType<SpawnTetrisBlock>().NewTetrisBlock();
+             }
             previousTime = Time.time;
         }
     
+    }
+
+    void AddToGrid(){
+         foreach (Transform children in transform)
+        {
+            int roundedX = Mathf.RoundToInt(children.transform.position.x);
+            int roundedY = Mathf.RoundToInt(children.transform.position.y);
+            grid[roundedX,roundedY] = children;
+    }
     }
     bool ValidMove()
     {
@@ -62,6 +78,8 @@ public class tetrisBlock : MonoBehaviour
             {
                 return false;
             }
+            if(grid[roundedX,roundedY] != null)
+            return false;
         }
         return true;
     }
