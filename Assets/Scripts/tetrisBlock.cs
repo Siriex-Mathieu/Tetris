@@ -6,8 +6,8 @@ public class tetrisBlock : MonoBehaviour
 {
     private float previousTime; 
     public float fallTime = 0.8f;//Temps pour la piece de tomber
-    private static int height = 40; //Hauteur
-    private static int width = 20; //Longueur
+    private static int height = 20; //Hauteur
+    private static int width = 10; //Longueur
 
     private KeyCode gauche = KeyCode.LeftArrow; //Appui sur <- 
     private KeyCode droite = KeyCode.RightArrow;//Appui sur ->
@@ -65,6 +65,7 @@ public class tetrisBlock : MonoBehaviour
              {
                 transform.position -= new Vector3(0,-1,0);//si peut pas monte 
                AddToGrid();//regarde si il a un block
+                CheckForLine();// Regarde si on peut supprimer une ligne
                 this.enabled = false;//le bolck ne devient plus le block courant = desactiver
                 FindObjectOfType<SpawnTetrisBlock>().NewTetrisBlock();//Fait spawner un block
              }
@@ -73,6 +74,55 @@ public class tetrisBlock : MonoBehaviour
     
     }
 
+    void CheckForLine()// Regarde si on peut supprimer une ligne
+    {
+        for (int i = height - 1; i >= 0; i--)
+        {
+            if (HasLine(i))
+            {
+                DeleteLine(i);
+                RowDown(i);
+            }
+        }
+    }
+
+    bool HasLine(int i)//Verifie si une ligne est complete
+    {
+        for(int j = 0; j<width; j++)
+        {
+            if (grid[j, i] == null)
+                return false;
+        }
+        return true;
+    }
+
+    void DeleteLine(int i)//Supprime la ligne
+    {
+        for (int j = 0; j < width; j++)
+        {
+            Destroy(grid[j,i].gameObject);
+            grid[j, i] = null;
+        }
+        
+    
+    }
+
+    void RowDown(int i)//Decend toutes les autre ligne
+    {
+        for(int y = i; y< height; y++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                if (grid[j, y] != null)
+                {
+                    grid[j, y - 1] = grid[j, y];
+                    grid[j, y] = null;
+                    grid[j, y - 1].transform.position -= new Vector3(0, 1, 0);
+                }
+            }
+        }
+    }
+       
     void AddToGrid(){//Permet de regarder si il y a un block en dessous
          foreach (Transform children in transform)
         {
