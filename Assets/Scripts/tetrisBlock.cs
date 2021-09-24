@@ -71,6 +71,23 @@ public class tetrisBlock : MonoBehaviour
              }
             previousTime = Time.time;//remet de temps par defaut
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            while (ValidMove())
+            {
+                transform.position += new Vector3(0, -1, 0);//Deplace vers le bas
+
+                if (!ValidMove())
+                {
+                    transform.position -= new Vector3(0, -1, 0);//si peut pas monte 
+                    AddToGrid();//regarde si il a un block
+                    CheckForLine();// Regarde si on peut supprimer une ligne
+                    this.enabled = false;//le bolck ne devient plus le block courant = desactiver
+                    FindObjectOfType<SpawnTetrisBlock>().NewTetrisBlock();//Fait spawner un block
+                }
+            }
+        }
     
     }
 
