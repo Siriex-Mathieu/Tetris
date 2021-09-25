@@ -12,6 +12,7 @@ public class tetrisBlock : MonoBehaviour
     private KeyCode gauche = KeyCode.LeftArrow; //Appui sur <- 
     private KeyCode droite = KeyCode.RightArrow;//Appui sur ->
     private KeyCode bas = KeyCode.DownArrow;
+    private KeyCode basRapide = KeyCode.Space;
     private KeyCode rotationD = KeyCode.D;
     private KeyCode rotaionG = KeyCode.Q;
 
@@ -72,7 +73,7 @@ public class tetrisBlock : MonoBehaviour
             previousTime = Time.time;//remet de temps par defaut
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(basRapide))//Fait décendre le block le plus bas possible le plus rapidement
         {
             while (ValidMove())
             {
@@ -93,14 +94,20 @@ public class tetrisBlock : MonoBehaviour
 
     void CheckForLine()// Regarde si on peut supprimer une ligne
     {
+        int a = 0;
+
         for (int i = height - 1; i >= 0; i--)
         {
             if (HasLine(i))
             {
                 DeleteLine(i);
                 RowDown(i);
+                a++;
             }
         }
+
+        Score.addScore(a);
+            
     }
 
     bool HasLine(int i)//Verifie si une ligne est complete
@@ -139,7 +146,7 @@ public class tetrisBlock : MonoBehaviour
             }
         }
     }
-       
+  
     void AddToGrid(){//Permet de regarder si il y a un block en dessous
          foreach (Transform children in transform)
         {
