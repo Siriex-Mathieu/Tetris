@@ -29,9 +29,9 @@ public class Score : MonoBehaviour
         if (i == 2)
             score += 100;
         if (i == 3)
-            score += 200;
+            score += 300;
         if (i == 4)
-            score += 400;
+            score += 1200;
     }
 
 }
