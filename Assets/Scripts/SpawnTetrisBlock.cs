@@ -11,7 +11,6 @@ public class SpawnTetrisBlock : MonoBehaviour
     {
         NewTetrisBlock();
     }
-
     // Update is called once per frame
     void Update()
     {
