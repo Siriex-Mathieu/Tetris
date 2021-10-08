@@ -1,7 +1,7 @@
 import System.IO;
 using System;
 /**
- * Classe qui permet d'accéder et modifier des fichiers, principalement des fichiers config .cfg
+ * Classe qui permet d'accï¿½der et modifier des fichiers, principalement des fichiers config .cfg
  */
 public class AccessFile
 {
@@ -16,7 +16,7 @@ public class AccessFile
             string[] id_value = line.Split('=');
             switch (id_value[0])
             {
-                case field
+                case field:
                     break;
             }
         }
@@ -34,11 +34,11 @@ public class AccessFile
 
 
 /**
- * Pour que tout se passe correctement, à chaque ajout de fichier .cfg, il faut que le fichier soit ajouté pour que le système le prenne en compte.
+ * Pour que tout se passe correctement, ï¿½ chaque ajout de fichier .cfg, il faut que le fichier soit ajoutï¿½ pour que le systï¿½me le prenne en compte.
  */
 public enum FileName
 {
-    KeySettings = "../Settings/KeysSetting.cfg",
+    stringKeySettings = "../Settings/KeysSetting.cfg",
     GlobalSettings = "../Settings/GlobalSetting.cfg"
 
 }
