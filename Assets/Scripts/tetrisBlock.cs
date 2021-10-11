@@ -76,7 +76,7 @@ public class tetrisBlock : MonoBehaviour
             previousTime = Time.time;//remet de temps par defaut
         }
 
-        if(Input.GetKeyDown(basRapide))//Fait décendre le block le plus bas possible le plus rapidement
+        else if(Input.GetKeyDown(basRapide))//Fait décendre le block le plus bas possible le plus rapidement
         {
             while (ValidMove())
             {
