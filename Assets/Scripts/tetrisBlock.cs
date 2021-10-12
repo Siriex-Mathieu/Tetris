@@ -93,16 +93,12 @@ public class tetrisBlock : MonoBehaviour
             }
         }
 
-        if(this.GetHighestLine() >= height-1){
-            print("game over");
-            Pause.QuitGame2();
-        }
-    
+        
     }
 
     private int GetHighestLine(){
 
-        for (int i = height; i > 0; i--)
+        for (int i = height-1; i > 0; i--)
         {
             for(int j = 0; j<width; j++)
             {
@@ -174,7 +170,12 @@ public class tetrisBlock : MonoBehaviour
             int roundedX = Mathf.RoundToInt(children.transform.position.x);
             int roundedY = Mathf.RoundToInt(children.transform.position.y);
             grid[roundedX,roundedY] = children;
-    }
+        }
+        if(this.GetHighestLine() >= height-1){
+                print("game over");
+                Pause.QuitGame2();
+            }
+    
     }
     bool ValidMove()//Regarde si on peut faire un mouvement, ça utilise les cordonners des block 
     {
