@@ -93,7 +93,7 @@ public class tetrisBlock : MonoBehaviour
             }
         }
 
-        if(Mathf.RoundToInt(this.transform.position.y)> 18){
+        if(this.GetHighestLine() >= height-1){
             print("game over");
             Pause.QuitGame2();
         }
