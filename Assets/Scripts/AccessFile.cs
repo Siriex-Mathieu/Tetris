@@ -5,14 +5,27 @@ using UnityEngine;
 public class AccessFile : MonoBehaviour
 {
     public static void test(string field, string value, FileName file){
+        // Permet de récupérer le fichier json dans le fichier de type FileName
         string text = System.IO.File.ReadAllText(FileNameMap.map[(int)file]);
+
+        // Cela permet de créer un objet setting à partir du json
         Settings s = Settings.CreateFromJson(text);
+
+        // Affiche l'objet pour vérifier que tout va bien
         print(s.toString());
+
+        // Changement d'un attribut
         s.move_down = "Test";
+
+        // Récupération d'un string sous format Json de l'objet s
         print(s.SaveToString());
+
+        // Ecriture du Json de l'objet s dans le fichier
         System.IO.File.WriteAllText(FileNameMap.map[(int)file],s.SaveToString());
     }
 
+
+    // Modification d'un attribut
     public static void Set(string field, string value, FileName file){
         
     }
