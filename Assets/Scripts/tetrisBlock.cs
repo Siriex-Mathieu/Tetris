@@ -92,6 +92,11 @@ public class tetrisBlock : MonoBehaviour
                 }
             }
         }
+
+        if(Mathf.RoundToInt(this.transform.position.y)> 18){
+            print("game over");
+            Pause.QuitGame2();
+        }
     
     }
 
