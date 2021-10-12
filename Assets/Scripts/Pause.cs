@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Pause : MonoBehaviour
 {
@@ -25,7 +27,7 @@ public class Pause : MonoBehaviour
         }
     }
 
-    void ActiveMenu()
+    public void ActiveMenu()
     {
         Time.timeScale = 0;
         AudioListener.pause = true;
@@ -38,5 +40,15 @@ public class Pause : MonoBehaviour
         AudioListener.pause = false;
         PauseMenuUI.SetActive(false);
         isPaused = false;
+    }
+
+    public void QuitGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public static void QuitGame2()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
