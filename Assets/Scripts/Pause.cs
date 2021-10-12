@@ -27,7 +27,7 @@ public class Pause : MonoBehaviour
         }
     }
 
-    void ActiveMenu()
+    public void ActiveMenu()
     {
         Time.timeScale = 0;
         AudioListener.pause = true;
