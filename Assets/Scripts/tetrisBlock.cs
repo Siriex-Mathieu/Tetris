@@ -92,7 +92,24 @@ public class tetrisBlock : MonoBehaviour
                 }
             }
         }
-    
+
+        
+    }
+
+    /**
+        Fonction qui retourne la hauteur de la ligne la plus haute possédant au moins une parti d'un block déjà posé.
+    */
+    private int GetHighestLine(){
+
+        for (int i = height-1; i > 0; i--)
+        {
+            for(int j = 0; j<width; j++)
+            {
+                if (grid[j, i] != null)
+                    return i;
+            }  
+        }
+        return 0;
     }
 
     void CheckForLine()// Regarde si on peut supprimer une ligne
@@ -156,7 +173,12 @@ public class tetrisBlock : MonoBehaviour
             int roundedX = Mathf.RoundToInt(children.transform.position.x);
             int roundedY = Mathf.RoundToInt(children.transform.position.y);
             grid[roundedX,roundedY] = children;
-    }
+        }
+        if(this.GetHighestLine() >= height-1){
+                print("game over");
+                Pause.QuitGame2();
+            }
+    
     }
     bool ValidMove()//Regarde si on peut faire un mouvement, ça utilise les cordonners des block 
     {
