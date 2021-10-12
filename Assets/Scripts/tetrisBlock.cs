@@ -96,6 +96,9 @@ public class tetrisBlock : MonoBehaviour
         
     }
 
+    /**
+        Fonction qui retourne la hauteur de la ligne la plus haute possédant au moins une parti d'un block déjà posé.
+    */
     private int GetHighestLine(){
 
         for (int i = height-1; i > 0; i--)
