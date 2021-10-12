@@ -100,6 +100,19 @@ public class tetrisBlock : MonoBehaviour
     
     }
 
+    private int GetHighestLine(){
+
+        for (int i = height; i > 0; i--)
+        {
+            for(int j = 0; j<width; j++)
+            {
+                if (grid[j, i] != null)
+                    return i;
+            }  
+        }
+        return 0;
+    }
+
     void CheckForLine()// Regarde si on peut supprimer une ligne
     {
         int a = 0;
