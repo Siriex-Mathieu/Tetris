@@ -12,19 +12,39 @@ public class tetrisBlock : MonoBehaviour
     private static int height = 20; //Hauteur
     private static int width = 10; //Longueur
 
-    private KeyCode gauche = KeyCode.LeftArrow; //Appui sur <- 
-    private KeyCode droite = KeyCode.RightArrow;//Appui sur ->
-    private KeyCode bas = KeyCode.DownArrow;
-    private KeyCode basRapide = KeyCode.Space;
-    private KeyCode rotationD = KeyCode.D;
-    private KeyCode rotaionG = KeyCode.Q;
+    private KeyCode gauche ; //Appui sur <- 
+    private KeyCode droite ;//Appui sur ->
+    private KeyCode bas ;
+    private KeyCode basRapide ;
+    private KeyCode rotationD ;
+    private KeyCode rotaionG ;
+
+    private Settings settings;
 
     private static Transform[,] grid = new Transform[width,height]; //Pour les collision entre les block
 
     public Vector3 RotationBlock; //Rotation
     // Start is called before the first frame update
+
+
+    
+    private void init(){
+        if (settings == null)
+        {
+            settings = Settings.init();
+        }
+        gauche = (KeyCode)Enum.Parse(typeof(KeyCode),settings.move_left);
+        droite = (KeyCode)Enum.Parse(typeof(KeyCode),settings.move_right);
+        bas = (KeyCode)Enum.Parse(typeof(KeyCode),settings.move_down);
+        basRapide = (KeyCode)Enum.Parse(typeof(KeyCode),settings.drop);
+        rotaionG = (KeyCode)Enum.Parse(typeof(KeyCode),settings.turn_left);
+        rotationD = (KeyCode)Enum.Parse(typeof(KeyCode),settings.turn_right);
+
+    }
+
     void Start()
     {  
+        init();
     }
 
     // Update is called once per frame
@@ -61,7 +81,7 @@ public class tetrisBlock : MonoBehaviour
 
         }
 
-        if(Time.time - previousTime > (Input.GetKey(bas) ? fallTime / 10 : fallTime))//Condition si on appuit sur bas ou que le temps de tombe arrive a zero
+        else if(Time.time - previousTime > (Input.GetKey(bas) ? fallTime / 10 : fallTime))//Condition si on appuit sur bas ou que le temps de tombe arrive a zero
         {
             transform.position += new Vector3(0,-1,0);//Deplace vers le bas
 
@@ -95,6 +115,7 @@ public class tetrisBlock : MonoBehaviour
 
         
     }
+
 
     /**
         Fonction qui retourne la hauteur de la ligne la plus haute possédant au moins une parti d'un block déjà posé.
@@ -175,10 +196,8 @@ public class tetrisBlock : MonoBehaviour
             grid[roundedX,roundedY] = children;
         }
         if(this.GetHighestLine() >= height-1){
-                print("game over");
                 Pause.QuitGame2();
             }
-    
     }
     bool ValidMove()//Regarde si on peut faire un mouvement, ça utilise les cordonners des block 
     {

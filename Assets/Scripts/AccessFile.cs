@@ -1,54 +1,14 @@
 using UnityEngine;
-/**
- * Classe qui permet d'accéder et modifier des fichiers, principalement des fichiers config .cfg
- */
-public class AccessFile : MonoBehaviour
-{
-    public static void test(string field, string value, FileName file){
-        // Permet de récupérer le fichier json dans le fichier de type FileName
-        string text = System.IO.File.ReadAllText(FileNameMap.map[(int)file]);
-
-        // Cela permet de créer un objet setting à partir du json
-        Settings s = Settings.CreateFromJson(text);
-
-        // Affiche l'objet pour vérifier que tout va bien
-        print(s.toString());
-
-        // Changement d'un attribut
-        s.move_down = "Test";
-
-        // Récupération d'un string sous format Json de l'objet s
-        print(s.SaveToString());
-
-        // Ecriture du Json de l'objet s dans le fichier
-        System.IO.File.WriteAllText(FileNameMap.map[(int)file],s.SaveToString());
-    }
-
-
-    // Modification d'un attribut
-    public static void Set(string field, string value, FileName file){
-        
-    }
-}
-
-
-/**
- * Pour que tout se passe correctement, a chaque ajout de fichier .cfg, il faut que le fichier soit ajouté pour que le système le prenne en compte.
- */
-public enum FileName
-{
-    stringKeySettings = 0,
-    GlobalSettings = 1
-
-}
-public static class FileNameMap{
-    public static string[] map = new string[] {"Assets/Settings/Keys.json","Assets/Settings/Keys.json"};
-
-}
-
-
 [System.Serializable]
 public class Settings{
+    // Chemin des settings
+    private static string path = "Assets/Settings/Setting.json";
+
+    // Singleton
+    private static Settings singleton;
+
+
+    // Les touches
     public string move_left;
     public string move_right;
     public string move_down;
@@ -57,6 +17,10 @@ public class Settings{
     public string turn_right;
     public string stock;
 
+    // Le reste l'ajout d'un nouvel attribut doit se faire ici et dans le fichier, il faut aussi que les noms soit les mêmes dans le même ordre, du même type et dans le code, l'attribut doit être privé
+
+
+    // Constructeur privé
     public Settings(string move_left, string move_right, string move_down, string drop, string turn_left, string turn_right, string stock){
         this.move_left = move_left;
         this.move_down = move_down;
@@ -65,6 +29,23 @@ public class Settings{
         this.turn_left = turn_left;
         this.turn_right = turn_right;
         this.stock = stock;
+    }
+
+    public static Settings init(){
+        // Permet de récupérer le fichier json dans le fichier de type FileName
+        string text = System.IO.File.ReadAllText(path);
+
+        // Cela permet de créer un objet setting à partir du json si il n'y en a pas déjà de créé
+        if(singleton == null)singleton = Settings.CreateFromJson(text);
+
+        // retourne l'objet
+        return singleton;
+    }
+
+    public static void Save(){
+        // Ecriture du Json de l'objet s dans le fichier
+        System.IO.File.WriteAllText(path,singleton.SaveToString());
+
     }
 
     public string toString(){
