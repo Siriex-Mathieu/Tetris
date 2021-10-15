@@ -5,12 +5,26 @@ using System.Collections;
 
 public class KeySelection : MonoBehaviour
 {
-    void OnGUI()
-    {
-        Event e = Event.current;
-        if (e.isKey)
-        {
-            print("Detected key code: " + e.keyCode);
-        }
+    
+    [SerializeField] private GameObject getKeyMenu;
+
+    [SerializeField] private static bool getKey;
+     void Update()
+    {        
+        if (Input.GetKeyDown(KeyCode.Escape))
+            DesactiveMenu();
+
     }
+
+    public void ActiveMenu()
+    {
+        getKeyMenu.SetActive(true);            
+        
+    }
+
+   public void DesactiveMenu()
+    {
+        getKeyMenu.SetActive(false);
+    }
+
 }

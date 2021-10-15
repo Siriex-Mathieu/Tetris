@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Option : MonoBehaviour
 {
@@ -8,9 +9,7 @@ public class Option : MonoBehaviour
     [SerializeField] public static bool isPaused;
 
 
-    [SerializeField] private GameObject getKeyMenu;
-
-    [SerializeField] private static bool getKey;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,16 +18,13 @@ public class Option : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-         if (Input.GetKeyDown(KeyCode.Escape))
-            DesactiveMenu();
+    {        
+
         // if (Input.GetKeyDown(KeyCode.Escape))
-        //     if(getKey) getKey = false;
-        //     else DesactiveMenu();
-        // if(getKey){
-        //     ActiveGetKey();
-        // }
-        // else DesactiveGetKey();
+        //     DesactiveMenu();
+        if (Input.GetKeyDown(KeyCode.Escape))
+            DesactiveMenu();
+
     }
 
     public void ActiveMenu()
@@ -46,16 +42,6 @@ public class Option : MonoBehaviour
         PauseMenuUI.SetActive(false);
         isPaused = false;
     }
-
-//    public void DesactiveGetKey(){
-//        getKeyMenu.SetActive(false);
-//        getKey = false;
-//    }
-
-//    public void ActiveGetKey(){
-//        getKeyMenu.SetActive(true);
-//        getKey = true;
-//    }
 
 
 }
