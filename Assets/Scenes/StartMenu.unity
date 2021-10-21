@@ -1533,10 +1533,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: b8d1cdf50bd2e5140821045aff277796, type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: b8d1cdf50bd2e5140821045aff277796, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: b8d1cdf50bd2e5140821045aff277796, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: b8d1cdf50bd2e5140821045aff277796, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 78d0324f27990bd49a8749fc2056c81f, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 78d0324f27990bd49a8749fc2056c81f, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 78d0324f27990bd49a8749fc2056c81f, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 78d0324f27990bd49a8749fc2056c81f, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: afa84cda2aaec114cb6d4d33ef26d6c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bbfed1405df877342a4b4c15d0bd32d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1611,8 +1611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 511754629}
-  normal: {fileID: 21300000, guid: afa84cda2aaec114cb6d4d33ef26d6c1, type: 3}
-  hover: {fileID: 21300000, guid: b8d1cdf50bd2e5140821045aff277796, type: 3}
+  normal: {fileID: 21300000, guid: bbfed1405df877342a4b4c15d0bd32d8, type: 3}
+  hover: {fileID: 21300000, guid: 78d0324f27990bd49a8749fc2056c81f, type: 3}
 --- !u!212 &511754629
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1653,7 +1653,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: afa84cda2aaec114cb6d4d33ef26d6c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bbfed1405df877342a4b4c15d0bd32d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
