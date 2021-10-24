@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Option : MonoBehaviour
 {
     [SerializeField] private GameObject PauseMenuUI;
     [SerializeField] public static bool isPaused;
+
+    Settings file = Settings.init();
+
 
 
     
@@ -19,7 +23,6 @@ public class Option : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-
         // if (Input.GetKeyDown(KeyCode.Escape))
         //     DesactiveMenu();
         if (Input.GetKeyDown(KeyCode.Escape))
