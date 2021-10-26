@@ -24,6 +24,7 @@ public class tetrisBlock : MonoBehaviour
     private static Transform[,] grid = new Transform[width,height]; //Pour les collision entre les block
 
     public Vector3 RotationBlock; //Rotation
+<<<<<<< Updated upstream
     // Start is called before the first frame update
 
 
@@ -42,12 +43,22 @@ public class tetrisBlock : MonoBehaviour
 
     }
 
+=======
+    
+    /**
+    * 1er Fonction qui demarre quand on apelle la classe
+    */
+>>>>>>> Stashed changes
     void Start()
     {  
         init();
     }
 
-    // Update is called once per frame
+    /**
+    *
+    * Fonction qui s'apelle AUTOMATIQUEMENT a chaque tick du jeu (1msec)
+    *
+    */
     void Update()
     {
         if(Input.GetKeyDown(gauche))//Appui sur <- 
@@ -133,7 +144,10 @@ public class tetrisBlock : MonoBehaviour
         return 0;
     }
 
-    void CheckForLine()// Regarde si on peut supprimer une ligne
+/**
+    Fonction qui verifie si une ligne est complete, si oui alors supprime la ligne, decsend les autres et ajoute du score
+*/
+    void CheckForLine()
     {
         int a = 0;
 
@@ -151,7 +165,10 @@ public class tetrisBlock : MonoBehaviour
             
     }
 
-    bool HasLine(int i)//Verifie si une ligne est complete
+/**
+    Fonction qui retourne un boolean, vrai si une ligne est complete sinon faux
+*/
+    bool HasLine(int i)
     {
         for(int j = 0; j<width; j++)
         {
@@ -161,18 +178,24 @@ public class tetrisBlock : MonoBehaviour
         return true;
     }
 
-    void DeleteLine(int i)//Supprime la ligne
+/**
+*   Fonction permetant de supprimer les lignes complete
+*/
+    void DeleteLine(int i)
     {
         for (int j = 0; j < width; j++)
         {
-            Destroy(grid[j,i].gameObject);
+            Destroy(grid[j,i].gameObject);//Pas besoin de dire ce que ça fait non ?
             grid[j, i] = null;
         }
         
     
     }
 
-    void RowDown(int i)//Decend toutes les autre ligne
+/**
+    Foncion qui fait descendre toute les ligne audessus de celle supprimer
+*/
+    void RowDown(int i)
     {
         for(int y = i; y< height; y++)
         {
@@ -180,37 +203,44 @@ public class tetrisBlock : MonoBehaviour
             {
                 if (grid[j, y] != null)
                 {
-                    grid[j, y - 1] = grid[j, y];
+                    grid[j, y - 1] = grid[j, y]; //Remplace la ligne endessous par la courante
                     grid[j, y] = null;
-                    grid[j, y - 1].transform.position -= new Vector3(0, 1, 0);
+                    grid[j, y - 1].transform.position -= new Vector3(0, 1, 0); // Deplace la ligne du dessous en haut
                 }
             }
         }
     }
   
-    void AddToGrid(){//Permet de regarder si il y a un block en dessous
+  /**
+     Fonction qui permet d'ajouter a une matrix la position des blocks pour afin d'avoir des colision entre les blocks 
+  */
+    void AddToGrid(){
          foreach (Transform children in transform)
         {
-            int roundedX = Mathf.RoundToInt(children.transform.position.x);
-            int roundedY = Mathf.RoundToInt(children.transform.position.y);
+            int roundedX = Mathf.RoundToInt(children.transform.position.x);//Recupere le x du block courant
+            int roundedY = Mathf.RoundToInt(children.transform.position.y);//Recupere le y du block courant
             grid[roundedX,roundedY] = children;
         }
         if(this.GetHighestLine() >= height-1){
                 Pause.QuitGame2();
             }
     }
+
+    /**
+        Fonction permetent de delimiter la zone de jeu 20*10, retourne vrai si le mouvement du block et possible sinon faux
+    */
     bool ValidMove()//Regarde si on peut faire un mouvement, ça utilise les cordonners des block 
     {
         foreach (Transform children in transform)
         {
-            int roundedX = Mathf.RoundToInt(children.transform.position.x);
-            int roundedY = Mathf.RoundToInt(children.transform.position.y);
+            int roundedX = Mathf.RoundToInt(children.transform.position.x);//Recupere le x du block courant
+            int roundedY = Mathf.RoundToInt(children.transform.position.y);//Recupere le y du block courant
 
-            if(roundedX < 0 || roundedX >= width || roundedY < 0 || roundedY>=height)
+            if(roundedX < 0 || roundedX >= width || roundedY < 0 || roundedY>=height) //Verifie si Longueur = 0<block<20 et Largeur = 0<block<10
             {
                 return false;
             }
-            if(grid[roundedX,roundedY] != null)
+            if(grid[roundedX,roundedY] != null)//Verifi si a la position du mouvement il y a pas de block déja poser
             return false;
         }
         return true;
