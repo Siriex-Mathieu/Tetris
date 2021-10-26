@@ -12,12 +12,12 @@ public class tetrisBlock : MonoBehaviour
     private static int height = 20; //Hauteur
     private static int width = 10; //Longueur
 
-    private KeyCode gauche = KeyCode.LeftArrow; //Appui sur <- 
-    private KeyCode droite = KeyCode.RightArrow;//Appui sur ->
-    private KeyCode bas = KeyCode.DownArrow;
-    private KeyCode basRapide = KeyCode.Space;
-    private KeyCode rotationD = KeyCode.D;
-    private KeyCode rotaionG = KeyCode.Q;
+    private KeyCode gauche = KeyCode.Q; //Appui sur <- 
+    private KeyCode droite = KeyCode.D;//Appui sur ->
+    private KeyCode bas = KeyCode.S;
+    private KeyCode basRapide = KeyCode.C;
+    private KeyCode rotationD = KeyCode.E;
+    private KeyCode rotaionG = KeyCode.R;
 
     private static Transform[,] grid = new Transform[width,height]; //Pour les collision entre les block
 
