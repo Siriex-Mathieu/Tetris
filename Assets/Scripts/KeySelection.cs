@@ -6,24 +6,32 @@ using System;
 
 public class KeySelection : MonoBehaviour
 {
-    
+    // objet du menu
     [SerializeField] private GameObject getKeyMenu;
 
-    [SerializeField] private static bool getKey;
 
+    // getKey permet de limiter la boucle uniquement au moment où le menu est ouvert
+    bool getKey;
+
+    // accès au singleton des setting
     Settings file = Settings.init();
 
-    private string prin ;
+    // touche qui sera à sauvegarder
+    string touche;
+
      void Update()
-    {        
+    {       
         if (Input.GetKeyDown(KeyCode.Escape))
             DesactiveMenu();
         if(getKey){
             if(Input.anyKeyDown){
                 foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
                 {
-                    if(Input.GetKeyDown(key)) print(key);
-                    // TODO il faut pouvoir remonter jusqu'à tetris block pour y changer les touches
+                    if(Input.GetKeyDown(key)) {
+                        file.change(touche, key.ToString());
+                        DesactiveMenu();
+                    }
+
                 }
             }
         }
@@ -32,14 +40,21 @@ public class KeySelection : MonoBehaviour
     public void ActiveMenu()
     {
         getKeyMenu.SetActive(true);
-        getKey = true;            
-        
+        getKey = true;        
     }
+
 
    public void DesactiveMenu()
     {
         getKeyMenu.SetActive(false);
         getKey = false;
     }
+
+    // permet de lancer le menu et de choisir la touche à sauvegarder
+    public void menu(string t){
+        touche = t;
+        ActiveMenu();
+    }
+
 
 }

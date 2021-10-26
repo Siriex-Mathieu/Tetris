@@ -24,10 +24,6 @@ public class tetrisBlock : MonoBehaviour
     private static Transform[,] grid = new Transform[width,height]; //Pour les collision entre les block
 
     public Vector3 RotationBlock; //Rotation
-<<<<<<< Updated upstream
-    // Start is called before the first frame update
-
-
     
     private void init(){
         if (settings == null)
@@ -43,12 +39,10 @@ public class tetrisBlock : MonoBehaviour
 
     }
 
-=======
     
     /**
     * 1er Fonction qui demarre quand on apelle la classe
     */
->>>>>>> Stashed changes
     void Start()
     {  
         init();
@@ -61,6 +55,15 @@ public class tetrisBlock : MonoBehaviour
     */
     void Update()
     {
+        if(settings.modified){
+            gauche = (KeyCode)Enum.Parse(typeof(KeyCode),settings.move_left);
+            droite = (KeyCode)Enum.Parse(typeof(KeyCode),settings.move_right);
+            bas = (KeyCode)Enum.Parse(typeof(KeyCode),settings.move_down);
+            basRapide = (KeyCode)Enum.Parse(typeof(KeyCode),settings.drop);
+            rotaionG = (KeyCode)Enum.Parse(typeof(KeyCode),settings.turn_left);
+            rotationD = (KeyCode)Enum.Parse(typeof(KeyCode),settings.turn_right);
+            settings.modified = false;
+        }
         if(Input.GetKeyDown(gauche))//Appui sur <- 
         {
             transform.position += new Vector3(-1,0,0); //Deplace a gauche
