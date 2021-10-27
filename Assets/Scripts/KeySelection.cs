@@ -14,22 +14,22 @@ public class KeySelection : MonoBehaviour
     bool getKey;
 
     // accès au singleton des setting
-    Settings file = Settings.init();
+    Settings file = Settings.init();// récupération du singleton 
 
     // touche qui sera à sauvegarder
     string touche;
 
      void Update()
     {       
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))// si la touche échape est appuyée alors on désactive le menu
             DesactiveMenu();
-        if(getKey){
-            if(Input.anyKeyDown){
-                foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
+        if(getKey){ // si le menu est actif le test est fait
+            if(Input.anyKeyDown){ // si une quelqu'onque touche est appuyée
+                foreach (KeyCode key in Enum.GetValues(typeof(KeyCode))) // chercher parmis les touches qui existe
                 {
-                    if(Input.GetKeyDown(key)) {
-                        file.change(touche, key.ToString());
-                        DesactiveMenu();
+                    if(Input.GetKeyDown(key)) { // si la touche key est actuellement appuyée
+                        file.change(touche, key.ToString()); // alors on change la touche "touche" est attribuée à key
+                        DesactiveMenu(); // et cela désactive le menu
                     }
 
                 }
@@ -50,7 +50,7 @@ public class KeySelection : MonoBehaviour
         getKey = false;
     }
 
-    // permet de lancer le menu et de choisir la touche à sauvegarder
+    // permet de lancer le menu et de choisir la touche à sauvegarder, cela est passé en paramêtre par le bouton
     public void menu(string t){
         touche = t;
         ActiveMenu();

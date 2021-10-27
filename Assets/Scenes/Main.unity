@@ -1727,9 +1727,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: faba1c61dbe3bf54eb9d7ab7a3e69676, type: 3}
-        m_TargetAssemblyTypeName: option, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 810319856}
+        m_TargetAssemblyTypeName: Option, Assembly-CSharp
+        m_MethodName: DesactiveMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2245,7 +2245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1191817113
 MonoBehaviour:
   m_ObjectHideFlags: 0

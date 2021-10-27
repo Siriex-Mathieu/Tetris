@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class Option : MonoBehaviour
 {
-    [SerializeField] private GameObject PauseMenuUI;
-    [SerializeField] public static bool isPaused;
+    [SerializeField] private GameObject PauseMenuUI; // objet du menu
+    [SerializeField] public static bool isPaused; // Savoir si le menu est actif ou pas
 
-    Settings file = Settings.init();
+    Settings file = Settings.init(); // récupération du singleton 
 
 
 
@@ -23,14 +23,12 @@ public class Option : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        // if (Input.GetKeyDown(KeyCode.Escape))
-        //     DesactiveMenu();
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)) // si la touche échape est appuyée alors on désactive le menu
             DesactiveMenu();
 
     }
 
-    public void ActiveMenu()
+    public void ActiveMenu() // fonction d'activation du menu
     {
         Time.timeScale = 0;
         AudioListener.pause = true;
@@ -38,7 +36,7 @@ public class Option : MonoBehaviour
         
     }
 
-   public void DesactiveMenu()
+   public void DesactiveMenu() // désactivation du menu
     {
         Time.timeScale = 1;
         AudioListener.pause = false;

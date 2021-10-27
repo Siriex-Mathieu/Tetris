@@ -66,7 +66,7 @@ public class Settings{
         return JsonUtility.ToJson(this);
     }
 
-    public void change(string touche, string Key){
+    public void change(string touche, string Key){ // change la touche touche avec la valeur key
         switch(touche){
             case ("move_left"):
                 this.move_left = Key;
@@ -91,6 +91,7 @@ public class Settings{
             break;
         }
         modified = true;
+        
     }
 
     

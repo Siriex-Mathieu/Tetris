@@ -59,13 +59,10 @@ public class tetrisBlock : MonoBehaviour
     {
         if (settings.modified)
         {
-            gauche = (KeyCode)Enum.Parse(typeof(KeyCode), settings.move_left);
-            droite = (KeyCode)Enum.Parse(typeof(KeyCode), settings.move_right);
-            bas = (KeyCode)Enum.Parse(typeof(KeyCode), settings.move_down);
-            basRapide = (KeyCode)Enum.Parse(typeof(KeyCode), settings.drop);
-            rotaionG = (KeyCode)Enum.Parse(typeof(KeyCode), settings.turn_left);
-            rotationD = (KeyCode)Enum.Parse(typeof(KeyCode), settings.turn_right);
-            settings.modified = false;
+            // Actualisation des touches
+            init();
+            settings.modified = false; // les touches sont actualisées, donc les touches sont compté comme non modifiées
+            Settings.Save(); // sauvegarde après avoir récupéré les modifications
         }
 
         if (!Pause.Paused)
