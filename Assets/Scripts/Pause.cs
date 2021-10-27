@@ -9,6 +9,8 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject PauseMenuUI;
     [SerializeField] private bool isPaused;
 
+    public static bool Paused;
+
     // Update is called once per frame
     private void Update()
     {
@@ -32,6 +34,7 @@ public class Pause : MonoBehaviour
         Time.timeScale = 0;
         AudioListener.pause = true;
         PauseMenuUI.SetActive(true);
+        Paused = true;
     }
 
    public void DesactiveMenu()
@@ -40,6 +43,7 @@ public class Pause : MonoBehaviour
         AudioListener.pause = false;
         PauseMenuUI.SetActive(false);
         isPaused = false;
+        Paused = false;
     }
 
     public void QuitGame()
