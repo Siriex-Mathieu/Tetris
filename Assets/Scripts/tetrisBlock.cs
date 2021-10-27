@@ -67,8 +67,8 @@ public class tetrisBlock : MonoBehaviour
             rotationD = (KeyCode)Enum.Parse(typeof(KeyCode), settings.turn_right);
             settings.modified = false;
         }
-        
-        if (Pause.Paused)
+
+        if (!Pause.Paused)
         {
             if (Input.GetKeyDown(gauche))//Appui sur <- 
             {
