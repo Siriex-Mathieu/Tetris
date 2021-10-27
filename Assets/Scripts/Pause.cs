@@ -9,7 +9,7 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject PauseMenuUI;
     [SerializeField] private bool isPaused;
 
-    public static bool Paused;
+    public static bool Paused = false;
 
     // Update is called once per frame
     private void Update()
