@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 
-
-public class tetrisBlock : MonoBehaviour
+public class Mode1 : MonoBehaviour
 {
     private float previousTime; 
     public float fallTime = 0.8f;//Temps pour la piece de tomber
     private static int height = 20; //Hauteur
     private static int width = 10; //Longueur
-
-    public int a;
 
     private KeyCode gauche = KeyCode.LeftArrow; //Appui sur <- 
     private KeyCode droite = KeyCode.RightArrow;//Appui sur ->
@@ -24,15 +22,33 @@ public class tetrisBlock : MonoBehaviour
     private static Transform[,] grid = new Transform[width,height]; //Pour les collision entre les block
 
     public Vector3 RotationBlock; //Rotation
+
+    public float timeValue = 15;
+
+    public GameObject TimeText;
+    Text textTime; 
+
     // Start is called before the first frame update
     void Start()
     {  
-        
+        textTime = TimeText.GetComponent<Text> (); 
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        
+        textTime.text = timeValue.ToString();
+
+        if (timeValue > 0){
+            timeValue -= Time.deltaTime;
+        }
+        else{
+            print("game finished");
+                Pause.QuitGame2();
+        }
+
+
         if(Input.GetKeyDown(gauche))//Appui sur <- 
         {
             transform.position += new Vector3(-1,0,0); //Deplace a gauche
@@ -52,6 +68,7 @@ public class tetrisBlock : MonoBehaviour
         else if(Input.GetKeyDown(rotationD))//appui sur D
         {
             transform.RotateAround(transform.TransformPoint(RotationBlock),new Vector3(0,0,1),90);//Rotation du block a 90° a droite
+            
             if(!ValidMove())
                  transform.RotateAround(transform.TransformPoint(RotationBlock),new Vector3(0,0,1),-90);//si peut pas 90° a gauche
 
@@ -95,6 +112,8 @@ public class tetrisBlock : MonoBehaviour
                 }
             }
         }
+
+        
 
         
     }
@@ -199,4 +218,6 @@ public class tetrisBlock : MonoBehaviour
         }
         return true;
     }
+
+   
 }
