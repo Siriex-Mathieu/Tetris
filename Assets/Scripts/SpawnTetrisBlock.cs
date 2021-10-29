@@ -6,10 +6,16 @@ public class SpawnTetrisBlock : MonoBehaviour
 {
     public GameObject[] Tetrominos;//Objet de type GameObject permetant de faire une liste de GameObject(Liste de block)
 
+
+    private static SpawnTetrisBlock singleton;
+
     // Start is called before the first frame update
     void Start()
     {
-        NewTetrisBlock();
+        if(singleton == null){
+            singleton = new SpawnTetrisBlock();
+            NewTetrisBlock();
+        }
     }
     // Update is called once per frame
     void Update()
