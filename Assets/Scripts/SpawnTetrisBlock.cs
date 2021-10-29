@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpawnTetrisBlock : MonoBehaviour
 {
     public GameObject[] Tetrominos;//Objet de type GameObject permetant de faire une liste de GameObject(Liste de block)
+    
+    [SerializeField] private GameObject spawn;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,6 @@ public class SpawnTetrisBlock : MonoBehaviour
     }
 
     public void NewTetrisBlock(){//Fait apparaitre un nouveau block a l'endroit du gameObject
-        Instantiate(Tetrominos[Random.Range(0, Tetrominos.Length)], transform.position, Quaternion.identity);
+        Instantiate(Tetrominos[Random.Range(0, Tetrominos.Length)], spawn.transform.position, Quaternion.identity);
     }
 }
