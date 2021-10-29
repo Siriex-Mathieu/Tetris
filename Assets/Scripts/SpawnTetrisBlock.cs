@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnTetrisBlock : MonoBehaviour
@@ -7,13 +5,13 @@ public class SpawnTetrisBlock : MonoBehaviour
     public GameObject[] Tetrominos;//Objet de type GameObject permetant de faire une liste de GameObject(Liste de block)
 
 
-    private static SpawnTetrisBlock singleton;
+    private static SingletonBlock singleton;
 
     // Start is called before the first frame update
     void Start()
     {
         if(singleton == null){
-            singleton = new SpawnTetrisBlock();
+            singleton = new SingletonBlock();
             NewTetrisBlock();
         }
     }
