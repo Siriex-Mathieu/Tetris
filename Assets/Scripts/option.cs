@@ -43,6 +43,7 @@ public class Option : MonoBehaviour
         PauseMenuUI.SetActive(false);
         isPaused = false;
     }
-
-
+    public void stopGame(){
+        Application.Quit();
+    }
 }
