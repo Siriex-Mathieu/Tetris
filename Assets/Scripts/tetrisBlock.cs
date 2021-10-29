@@ -26,6 +26,8 @@ public class tetrisBlock : MonoBehaviour
 
     public Vector3 RotationBlock; //Rotation
 
+    
+
     private void init()
     {
         if (settings == null)
