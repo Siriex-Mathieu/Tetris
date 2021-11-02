@@ -181,6 +181,8 @@ public class tetrisBlock : MonoBehaviour
             }
     
     }
+
+    
     bool ValidMove()//Regarde si on peut faire un mouvement, ça utilise les cordonners des block 
     {
         foreach (Transform children in transform)

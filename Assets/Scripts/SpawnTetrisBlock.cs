@@ -9,6 +9,9 @@ public class SpawnTetrisBlock : MonoBehaviour
     public GameObject suiv; // bloc suivant
     public GameObject suiv2; // bloc après le bloc suivant
 
+    private GameObject a; // valeur associée au bloc suivant (pour pouvoir le supprimer lorsqu'il sera obsolète)
+    private GameObject b; // valeur associée au bloc suivant2 (pour pouvoir le supprimer lorsqu'il sera obsolète)
+
     private int valsuiv2; // valeur de l'index du 2eme bloc suivant
     private int valsuiv; // valeur de l'index du bloc suivant
     private int valactuel; // valeur de l'index du bloc actuel
@@ -20,6 +23,7 @@ public class SpawnTetrisBlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // initialisation des premiers blocs a placer
         valsuiv2 = Random.Range(0, Tetrominos.Length);
         valsuiv = Random.Range(0, Tetrominos.Length);
         NewTetrisBlock();
@@ -33,13 +37,17 @@ public class SpawnTetrisBlock : MonoBehaviour
     }
 
     public void NewTetrisBlock(){  //Fait apparaitre un nouveau block a l'endroit du gameObject
+        // remplacer la valeur du bloc de n par celui de n+1
         valactuel = valsuiv;
         valsuiv = valsuiv2;
         valsuiv2 = Random.Range(0, Tetrominos.Length);
+        /* afficher les blocs (on instancie le bloc en prenant la valeur généree aupravant, soit 
+        Random.Range(0, Tetrominos.Length),
+        qui est une fonction qui retourne un id aléatoire du groupe de blocs Tetrominos)*/
+        Destroy(a); //supprimer les blocs précédents (pour éviter qu'ils s'empilent les uns sur les autres)
+        Destroy(b); //supprimer les blocs précédents (pour éviter qu'ils s'empilent les uns sur les autres)
         Instantiate(Tetrominos[valactuel], transform.position, Quaternion.identity);
-        Instantiate(Tetrominos[valsuiv], suiv.transform.position, Quaternion.identity);
-        Instantiate(Tetrominos[valsuiv2], suiv2.transform.position, Quaternion.identity);
-        Debug.Log("valactuel =" + valactuel + "valsuiv =" + valsuiv + "valsuiv2 = " + valsuiv2);
-        Debug.Log(suiv.transform.position);
+        a = Instantiate(Tetrominos[valsuiv], suiv.transform.position, Quaternion.identity); // assigner le bloc suivant à a
+        b = Instantiate(Tetrominos[valsuiv2], suiv2.transform.position, Quaternion.identity); // assigner le bloc suivant à b
     }
 }
