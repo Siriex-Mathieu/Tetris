@@ -1,35 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnTetrisBlock : MonoBehaviour
 {
     public GameObject[] Tetrominos;//Objet de type GameObject permetant de faire une liste de GameObject(Liste de block)
 
-    public GameObject suiv; // bloc suivant
-    public GameObject suiv2; // bloc après le bloc suivant
+    public Sprite[] lib; // Initialiser les images a montrer
 
-    private GameObject a; // valeur associée au bloc suivant (pour pouvoir le supprimer lorsqu'il sera obsolète)
-    private GameObject b; // valeur associée au bloc suivant2 (pour pouvoir le supprimer lorsqu'il sera obsolète)
+    public SpriteRenderer suiv; // image du bloc suivant
+    public SpriteRenderer suiv2; // image bloc après le bloc suivant
 
     private int valsuiv2; // valeur de l'index du 2eme bloc suivant
     private int valsuiv; // valeur de l'index du bloc suivant
     private int valactuel; // valeur de l'index du bloc actuel
 
-    // initialisaton des positions des blocs suivants (nécéssaire pour instancier les blocs depuis le point ou ils sont)
-    private Vector3 positionsuiv;
-    private Vector3 positionsuiv2;
 
     // Start is called before the first frame update
     void Start()
     {
-        // initialisation des premiers blocs a placer
+        // initialiser aléatoirement ints qui définiront l'apparition des 2 tetrisblocks suivants
         valsuiv2 = Random.Range(0, Tetrominos.Length);
         valsuiv = Random.Range(0, Tetrominos.Length);
         NewTetrisBlock();
-        // initialiser aléatoirement ints qui définiront l'apparition des 2 tetrisblocks suivants  
-        Vector3 positionsuiv = suiv.transform.position;
-        /*Vector3 positionsuiv2 = suiv2.transform.position;*/
+        // initialisation des sprites (images)
+        suiv.sprite = lib[valsuiv];
+        suiv2.sprite = lib[valsuiv2];
     }
     // Update is called once per frame
     void Update()
@@ -44,10 +41,9 @@ public class SpawnTetrisBlock : MonoBehaviour
         /* afficher les blocs (on instancie le bloc en prenant la valeur généree aupravant, soit 
         Random.Range(0, Tetrominos.Length),
         qui est une fonction qui retourne un id aléatoire du groupe de blocs Tetrominos)*/
-        Destroy(a); //supprimer les blocs précédents (pour éviter qu'ils s'empilent les uns sur les autres)
-        Destroy(b); //supprimer les blocs précédents (pour éviter qu'ils s'empilent les uns sur les autres)
+        // mettre a jour les sprites et le bloc courant
         Instantiate(Tetrominos[valactuel], transform.position, Quaternion.identity);
-        a = Instantiate(Tetrominos[valsuiv], suiv.transform.position, Quaternion.identity); // assigner le bloc suivant à a
-        b = Instantiate(Tetrominos[valsuiv2], suiv2.transform.position, Quaternion.identity); // assigner le bloc suivant à b
+        suiv.sprite = lib[valsuiv];
+        suiv2.sprite = lib[valsuiv2];
     }
 }
