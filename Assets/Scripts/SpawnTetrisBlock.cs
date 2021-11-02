@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SpawnTetrisBlock : MonoBehaviour
 {
-    public GameObject[] Tetrominos;//Objet de type GameObject permetant de faire une liste de GameObject(Liste de block)
+    public GameObject[] Tetrominos;//Objet de type GameObject permetant de faire une liste de GameObject
+
+    public GameObject[] Affichage_prochain;//Objet de type GameObject permetant de faire une liste de GameObject(La preview des block)
 
     public GameObject suiv; // bloc suivant
     public GameObject suiv2; // bloc après le bloc suivant
@@ -47,7 +49,7 @@ public class SpawnTetrisBlock : MonoBehaviour
         Destroy(a); //supprimer les blocs précédents (pour éviter qu'ils s'empilent les uns sur les autres)
         Destroy(b); //supprimer les blocs précédents (pour éviter qu'ils s'empilent les uns sur les autres)
         Instantiate(Tetrominos[valactuel], transform.position, Quaternion.identity);
-        a = Instantiate(Tetrominos[valsuiv], suiv.transform.position, Quaternion.identity); // assigner le bloc suivant à a
-        b = Instantiate(Tetrominos[valsuiv2], suiv2.transform.position, Quaternion.identity); // assigner le bloc suivant à b
+        a = Instantiate(Affichage_prochain[valsuiv], suiv.transform.position, Quaternion.identity); // assigner le bloc suivant à a
+        b = Instantiate(Affichage_prochain[valsuiv2], suiv2.transform.position, Quaternion.identity); // assigner le bloc suivant à b
     }
 }
