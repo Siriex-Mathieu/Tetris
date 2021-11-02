@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnTetrisBlock : MonoBehaviour
@@ -22,16 +20,22 @@ public class SpawnTetrisBlock : MonoBehaviour
     private Vector3 positionsuiv;
     private Vector3 positionsuiv2;
 
+
+    private static SingletonBlock singleton;
+
     // Start is called before the first frame update
     void Start()
     {
-        // initialisation des premiers blocs a placer
-        valsuiv2 = Random.Range(0, Tetrominos.Length);
-        valsuiv = Random.Range(0, Tetrominos.Length);
-        NewTetrisBlock();
-        // initialiser aléatoirement ints qui définiront l'apparition des 2 tetrisblocks suivants  
-        Vector3 positionsuiv = suiv.transform.position;
-        /*Vector3 positionsuiv2 = suiv2.transform.position;*/
+        if(singleton == null){
+            singleton = new SingletonBlock();
+            // initialisation des premiers blocs a placer
+            valsuiv2 = Random.Range(0, Tetrominos.Length);
+            valsuiv = Random.Range(0, Tetrominos.Length);
+            NewTetrisBlock();
+            // initialiser aléatoirement ints qui définiront l'apparition des 2 tetrisblocks suivants  
+            Vector3 positionsuiv = suiv.transform.position;
+            /*Vector3 positionsuiv2 = suiv2.transform.position;*/
+        }
     }
     // Update is called once per frame
     void Update()
