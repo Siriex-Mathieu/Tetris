@@ -35,4 +35,5 @@ public class Score : MonoBehaviour
             score += 1200;
     }
 
+
 }
