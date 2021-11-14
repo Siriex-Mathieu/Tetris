@@ -13,6 +13,7 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Leaderboard.Clear();
         txt = ScoreText.GetComponent<Text> ();
         score = 0;
     }
@@ -20,6 +21,7 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Leaderboard.Show();
         txt.text = score.ToString();
     }
 

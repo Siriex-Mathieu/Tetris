@@ -175,8 +175,9 @@ public class tetrisBlock : MonoBehaviour
             int roundedY = Mathf.RoundToInt(children.transform.position.y);
             grid[roundedX,roundedY] = children;
         }
-        if(this.GetHighestLine() >= height-1){
+        if(this.GetHighestLine() >= height-1){ // défaite
                 print("game over");
+                Leaderboard.CheckValue(Score.score);
                 Pause.QuitGame2();
             }
     

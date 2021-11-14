@@ -12,10 +12,10 @@ public class HighScore : MonoBehaviour
     Color gold;
     void Start()
     {
-        //text = HighScoreText.GetComponent<Text>();
         ColorUtility.TryParseHtmlString("#CBAF3D", out gold);
         text.text = PlayerPrefs.GetInt("Highscore").ToString();
         highBefore =  PlayerPrefs.GetInt("Highscore");
+        highscore = PlayerPrefs.GetInt("Highscore");
     }
 
     void Update()
@@ -24,10 +24,8 @@ public class HighScore : MonoBehaviour
             text.color = gold;
             text.text = Score.score.ToString();
             PlayerPrefs.SetInt("Highscore", Score.score);
+            highscore = PlayerPrefs.GetInt("Highscore");
         }
     }
 
-    void ChangeTextColor (){
-      //  if(Score.score > highscore)
-    }
 }
