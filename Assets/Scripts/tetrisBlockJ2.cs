@@ -73,7 +73,7 @@ public class tetrisBlockJ2 : MonoBehaviour
                 AddToGrid();//regarde si il a un block
                 CheckForLine();// Regarde si on peut supprimer une ligne
                 this.enabled = false;//le bolck ne devient plus le block courant = desactiver
-                FindObjectOfType<SpawnTetrisBlock>().NewTetrisBlock();//Fait spawner un block
+                FindObjectsOfType<SpawnTetrisBlock>()[1].NewTetrisBlock();
             }
             previousTime = Time.time;//remet de temps par defaut
         }
