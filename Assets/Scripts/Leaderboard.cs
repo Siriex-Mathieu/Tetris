@@ -9,8 +9,7 @@ public class Leaderboard : MonoBehaviour
 
     public Text h2,h3,h4,h5,h6,h7,h8,h9;
 
-    void Start(){ 
-        
+    void Start(){
     }
 
     void Update(){ // afficher les textes sur la scene (il y'a certaiement un moyen d'optimiser ce que j'ai fait)
@@ -26,8 +25,9 @@ public class Leaderboard : MonoBehaviour
 
 
     public static void CheckValue(int t){
-        valuearray[8] = t;
-        Sort();
+        Init();
+        valuearray[7] = t;
+        valuearray = sort(valuearray);
         Apply();
     }
 
@@ -43,14 +43,31 @@ public class Leaderboard : MonoBehaviour
         }
     }
 
-    public static void Sort(){
-        int[] copy = new int[8];
-        for(int i = 0;i<=7;i++ ){}
+    public static int[] sort(int[] tab){
+        int[] copy = new int[tab.Length];
+        for(int i = 0;i<tab.Length;i++){
+            copy[i] = tab[getHighestNumber(tab)];
+            tab[getHighestNumber(tab)] = 0;
+        }
+        return copy;
     }
 
+    public static int getHighestNumber(int[] tab){
+        int max = 0;
+        int res = 0;
+        for(int i = 0; i< tab.Length;i++){
+            if(tab[i]> max){ 
+                max = tab[i];
+                res = i;
+            }
+        }
+        return res; 
+    }
+
+
     public static void Init(){
-        valuearray = new int[8];
-        for(int i =0;i<=8;i++){
+        valuearray = new int[9];
+        for(int i =0;i<valuearray.Length-1;i++){
             valuearray[i] = PlayerPrefs.GetInt("Highscore" + (i+2));
         }
     }
