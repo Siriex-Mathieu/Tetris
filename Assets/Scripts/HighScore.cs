@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HighScore : MonoBehaviour
 {
     public static int highscore;
-    private int highBefore;
+    public static int highBefore;
 
     public Text text;
     Color gold;
