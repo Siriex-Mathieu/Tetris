@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnTetrisBlock : MonoBehaviour
@@ -8,10 +6,16 @@ public class SpawnTetrisBlock : MonoBehaviour
     
     [SerializeField] private GameObject spawn;
 
+
+    private static SingletonBlock singleton;
+
     // Start is called before the first frame update
     void Start()
     {
-        NewTetrisBlock();
+        if(singleton == null){
+            singleton = new SingletonBlock();
+            NewTetrisBlock();
+        }
     }
     // Update is called once per frame
     void Update()
