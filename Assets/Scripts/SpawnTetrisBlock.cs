@@ -29,7 +29,6 @@ public class SpawnTetrisBlock : MonoBehaviour
     }
 
     public void NewTetrisBlock(){//Fait apparaitre un nouveau block a l'endroit du gameObject
-        print(spawn.transform.position.ToString());
         Instantiate(Tetrominos[Random.Range(0, Tetrominos.Length)], spawn.transform.position, Quaternion.identity);
     }
 }
