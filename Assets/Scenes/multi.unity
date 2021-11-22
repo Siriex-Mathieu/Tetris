@@ -1349,6 +1349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faba1c61dbe3bf54eb9d7ab7a3e69676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseMenuUI: {fileID: 1191817112}
 --- !u!4 &810319857
 Transform:
   m_ObjectHideFlags: 0
@@ -2261,6 +2262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faba1c61dbe3bf54eb9d7ab7a3e69676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseMenuUI: {fileID: 0}
 --- !u!114 &1191817114
 MonoBehaviour:
   m_ObjectHideFlags: 0
