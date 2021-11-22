@@ -16,7 +16,7 @@ public class tetrisBlockJ2 : MonoBehaviour
     private KeyCode gauche = KeyCode.LeftArrow; //Appui sur <- 
     private KeyCode droite = KeyCode.RightArrow;//Appui sur ->
     private KeyCode bas = KeyCode.DownArrow;
-    private KeyCode basRapide = KeyCode.Space;
+    private KeyCode basRapide = KeyCode.RightControl;
     private KeyCode rotationD = KeyCode.L;
     private KeyCode rotaionG = KeyCode.M;
 
@@ -32,6 +32,7 @@ public class tetrisBlockJ2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // FindObjectsOfType<SpawnTetrisBlock>()[1].
         if (Input.GetKeyDown(gauche))//Appui sur <- 
         {
             transform.position += new Vector3(-1, 0, 0); //Deplace a gauche
