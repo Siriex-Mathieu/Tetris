@@ -22,6 +22,7 @@ public class tetrisBlock : MonoBehaviour
 
     private Settings settings;
 
+
     private static Transform[,] grid = new Transform[width, height]; //Pour les collision entre les block
 
     public Vector3 RotationBlock; //Rotation
