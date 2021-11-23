@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Option : MonoBehaviour
+public class option : MonoBehaviour
 {
     [SerializeField] private GameObject PauseMenuUI; // objet du menu
     [SerializeField] public static bool isPaused; // Savoir si le menu est actif ou pas
