@@ -19,14 +19,19 @@ public class SpawnTetrisBlock : MonoBehaviour
     // initialisaton des positions des blocs suivants (nécéssaire pour instancier les blocs depuis le point ou ils sont)
     private Vector3 positionsuiv;
     private Vector3 positionsuiv2;
+    
+    [SerializeField] private GameObject spawn;
+
 
 
     private static SingletonBlock singleton;
+    private static SingletonBlock singleton2;
+    [SerializeField] private bool isFirst;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(singleton == null){
+        if(singleton == null && isFirst){
             singleton = new SingletonBlock();
             // initialisation des premiers blocs a placer
             valsuiv2 = Random.Range(0, Tetrominos.Length);
@@ -35,6 +40,10 @@ public class SpawnTetrisBlock : MonoBehaviour
             // initialiser aléatoirement ints qui définiront l'apparition des 2 tetrisblocks suivants  
             Vector3 positionsuiv = suiv.transform.position;
             /*Vector3 positionsuiv2 = suiv2.transform.position;*/
+        }
+        if(singleton2 == null && !isFirst){
+            singleton2 = new SingletonBlock();
+            NewTetrisBlock();
         }
     }
     // Update is called once per frame
@@ -55,5 +64,6 @@ public class SpawnTetrisBlock : MonoBehaviour
         Instantiate(Tetrominos[valactuel], transform.position, Quaternion.identity);
         a = Instantiate(Affichage_prochain[valsuiv], suiv.transform.position, Quaternion.identity); // assigner le bloc suivant à a
         b = Instantiate(Affichage_prochain[valsuiv2], suiv2.transform.position, Quaternion.identity); // assigner le bloc suivant à b
+
     }
 }
