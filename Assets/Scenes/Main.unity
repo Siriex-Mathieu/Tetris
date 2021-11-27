@@ -745,6 +745,7 @@ MonoBehaviour:
   - {fileID: 4244936125704137322, guid: a06bed23c64aebe42a0be0c18bd090f6, type: 3}
   - {fileID: 4599767171564795869, guid: d823249018f58054b8ef08fb360bd2e8, type: 3}
   spawn: {fileID: 312932157}
+  isFirst: 1
 --- !u!4 &312932159
 Transform:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class waitingMenu : MonoBehaviour
     {
         if (Input.anyKey)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //Charger la scene n°1 => le jeu
+                SceneManager.LoadScene("Main"); //Charger la scene n°1 => le jeu
             }
         
     }

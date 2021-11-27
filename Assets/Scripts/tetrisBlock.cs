@@ -60,6 +60,7 @@ public class tetrisBlock : MonoBehaviour
     */
     void Update()
     {
+        print("Debug");
         if (settings.modified)
         {
             // Actualisation des touches

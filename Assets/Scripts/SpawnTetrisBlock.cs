@@ -14,6 +14,8 @@ public class SpawnTetrisBlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        print("Spawn");
+        print(singleton);
         if(singleton == null && isFirst){
             singleton = new SingletonBlock();
             NewTetrisBlock();
