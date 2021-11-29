@@ -177,11 +177,12 @@ public class tetrisBlock : MonoBehaviour
         }
         if(this.GetHighestLine() >= height-1){ // défaite
                 print("game over");
+                string username = "temp";
                 if(Score.score<HighScore.highscore){
-                    Leaderboard.CheckValue(Score.score);
+                    Leaderboard.CheckValue(username,Score.score);
                 }
                 else{
-                    Leaderboard.CheckValue(HighScore.highBefore);
+                    Leaderboard.CheckValue(username,HighScore.highBefore);
                 }
                 Pause.QuitGame2();
             }

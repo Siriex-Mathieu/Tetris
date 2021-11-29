@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class Leaderboard : MonoBehaviour
 {
-    private static int[] valuearray;
+    private static object[,] valuearray;
 
     public Text h1,h2,h3,h4,h5,h6,h7,h8,h9,h10;
+    public Text s1,s2,s3,s4,s5,s6,s7,s8,s9,s10;
 
     void Start(){
     }
@@ -23,12 +24,23 @@ public class Leaderboard : MonoBehaviour
         h8.text = PlayerPrefs.GetInt("Highscore8").ToString();
         h9.text = PlayerPrefs.GetInt("Highscore9").ToString();
         h10.text = PlayerPrefs.GetInt("Highscore10").ToString();
+        s1.text = PlayerPrefs.GetString("Highscore");
+        s2.text = PlayerPrefs.GetString("Highscore2");
+        s3.text = PlayerPrefs.GetString("Highscore3");
+        s4.text = PlayerPrefs.GetString("Highscore4");
+        s5.text = PlayerPrefs.GetString("Highscore5");
+        s6.text = PlayerPrefs.GetString("Highscore6");
+        s7.text = PlayerPrefs.GetString("Highscore7");
+        s8.text = PlayerPrefs.GetString("Highscore8");
+        s9.text = PlayerPrefs.GetString("Highscore9");
+        s10.text = PlayerPrefs.GetString("Highscore10");
     }
 
 
-    public static void CheckValue(int t){
+    public static void CheckValue(string un,int t){
         Init();
-        valuearray[7] = t;
+        valuearray[valuearray.Length/2 -1,1] = t;
+        valuearray[valuearray.Length/2 -1,0] = un;
         valuearray = sort(valuearray);
         Apply();
     }
@@ -36,6 +48,7 @@ public class Leaderboard : MonoBehaviour
     public static void Clear(){ // reinitialiser le leaderboard (pour les devs ou le menu options)
         for(int i =2;i<=10;i++){
             PlayerPrefs.SetInt("Highscore" + i, 0);
+            PlayerPrefs.SetString("Highscore" + i, "/");
         }
     }
 
@@ -45,21 +58,24 @@ public class Leaderboard : MonoBehaviour
         }
     }
 
-    public static int[] sort(int[] tab){
-        int[] copy = new int[tab.Length];
-        for(int i = 0;i<tab.Length;i++){
-            copy[i] = tab[getHighestNumber(tab)];
-            tab[getHighestNumber(tab)] = 0;
+    public static object[,] sort(object[,] tab){
+        object[,] copy = new object[tab.Length,2];
+        for(int i = 0;i<tab.Length/2;i++){
+            copy[i,0] = tab[getHighestNumber(tab),0];
+            copy[i,1] = tab[getHighestNumber(tab),1];
+            tab[getHighestNumber(tab),1] = 0;
         }
         return copy;
     }
 
-    public static int getHighestNumber(int[] tab){
+    public static int getHighestNumber(object[,] tab){
         int max = 0;
         int res = 0;
-        for(int i = 0; i< tab.Length;i++){
-            if(tab[i]> max){ 
-                max = tab[i];
+        int comp = 0;
+        for(int i = 0; i< tab.Length/2;i++){
+            comp = (int)tab[i,1];
+            if(comp> max){ 
+                max = comp;
                 res = i;
             }
         }
@@ -68,15 +84,18 @@ public class Leaderboard : MonoBehaviour
 
 
     public static void Init(){
-        valuearray = new int[10];
-        for(int i =0;i<valuearray.Length-1;i++){
-            valuearray[i] = PlayerPrefs.GetInt("Highscore" + (i+2));
+        valuearray = new object[10,2];
+        for(int i =0;i<valuearray.Length/2;i++){
+            Debug.Log(i);
+            valuearray[i,0] = PlayerPrefs.GetString("Highscore" + (i+2));
+            valuearray[i,1] = PlayerPrefs.GetInt("Highscore" + (i+2));
         }
     }
 
     public static void Apply(){
         for(int i =0;i<=8;i++){
-            PlayerPrefs.SetInt("Highscore" + (i+2), valuearray[i]);
+            PlayerPrefs.SetString("Highscore" + (i+2), (string)valuearray[i,0]);
+            PlayerPrefs.SetInt("Highscore" + (i+2), (int)valuearray[i,1]);
         }
     }
 }

@@ -21,7 +21,7 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Leaderboard.Show();
+        //Leaderboard.Show();
         txt.text = score.ToString();
     }
 
