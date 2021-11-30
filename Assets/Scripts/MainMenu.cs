@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +2); // charger la scene n°2 => celle de l'attente
     }
 
-    public void PlayMulti()
+    public static void PlayMulti()
     {
         SceneManager.LoadScene("multi");
     }
