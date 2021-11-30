@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnTetrisBlock : MonoBehaviour
 {
@@ -6,11 +7,10 @@ public class SpawnTetrisBlock : MonoBehaviour
 
     public GameObject[] Affichage_prochain;//Objet de type GameObject permetant de faire une liste de GameObject(La preview des block)
 
-    public GameObject suiv; // bloc suivant
-    public GameObject suiv2; // bloc après le bloc suivant
+    public Sprite[] lib; // Initialiser les images a montrer
 
-    private GameObject a; // valeur associée au bloc suivant (pour pouvoir le supprimer lorsqu'il sera obsolète)
-    private GameObject b; // valeur associée au bloc suivant2 (pour pouvoir le supprimer lorsqu'il sera obsolète)
+    public SpriteRenderer suiv; // image du bloc suivant
+    public SpriteRenderer suiv2; // image bloc après le bloc suivant
 
     private int valsuiv2; // valeur de l'index du 2eme bloc suivant
     private int valsuiv; // valeur de l'index du bloc suivant
@@ -28,9 +28,19 @@ public class SpawnTetrisBlock : MonoBehaviour
     private static SingletonBlock singleton2;
     [SerializeField] private bool isFirst;
 
+
     // Start is called before the first frame update
     void Start()
     {
+
+        // initialiser aléatoirement ints qui définiront l'apparition des 2 tetrisblocks suivants
+        valsuiv2 = Random.Range(0, Tetrominos.Length);
+        valsuiv = Random.Range(0, Tetrominos.Length);
+        NewTetrisBlock();
+        // initialisation des sprites (images)
+        suiv.sprite = lib[valsuiv];
+        suiv2.sprite = lib[valsuiv2];
+
         if(singleton == null && isFirst){
             singleton = new SingletonBlock();
             // initialisation des premiers blocs a placer
@@ -64,11 +74,13 @@ public class SpawnTetrisBlock : MonoBehaviour
         /* afficher les blocs (on instancie le bloc en prenant la valeur généree aupravant, soit 
         Random.Range(0, Tetrominos.Length),
         qui est une fonction qui retourne un id aléatoire du groupe de blocs Tetrominos)*/
-        Destroy(a); //supprimer les blocs précédents (pour éviter qu'ils s'empilent les uns sur les autres)
-        Destroy(b); //supprimer les blocs précédents (pour éviter qu'ils s'empilent les uns sur les autres)
+        // mettre a jour les sprites et le bloc courant
         Instantiate(Tetrominos[valactuel], transform.position, Quaternion.identity);
+
+        suiv.sprite = lib[valsuiv];
+        suiv2.sprite = lib[valsuiv2];
+
         a = Instantiate(Affichage_prochain[valsuiv], suiv.transform.position, Quaternion.identity); // assigner le bloc suivant à a
         b = Instantiate(Affichage_prochain[valsuiv2], suiv2.transform.position, Quaternion.identity); // assigner le bloc suivant à b
-
     }
 }
