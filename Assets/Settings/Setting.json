@@ -1,1 +1,1 @@
-{ "modified": false, "move_left": "Q", "move_right": "D", "move_down": "S", "drop": "Space", "turn_left": "Q", "turn_right": "D", "stock": "S" }
+{"modified":false,"move_left":"Q","move_right":"R","move_down":"B","drop":"Space","turn_left":"Q","turn_right":"D","stock":"S"}
