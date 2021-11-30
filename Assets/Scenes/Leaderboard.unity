@@ -601,9 +601,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Leaderboard, Assembly-CSharp
-        m_MethodName: Clear
+      - m_Target: {fileID: 676513075}
+        m_TargetAssemblyTypeName: ResetButton, Assembly-CSharp
+        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3149,16 +3149,16 @@ MonoBehaviour:
   h8: {fileID: 436408144}
   h9: {fileID: 576447021}
   h10: {fileID: 447918270}
-  s1: {fileID: 0}
-  s2: {fileID: 0}
-  s3: {fileID: 0}
-  s4: {fileID: 0}
-  s5: {fileID: 0}
-  s6: {fileID: 0}
-  s7: {fileID: 0}
-  s8: {fileID: 0}
-  s9: {fileID: 0}
-  s10: {fileID: 0}
+  s1: {fileID: 83719950}
+  s2: {fileID: 1350805820}
+  s3: {fileID: 134844924}
+  s4: {fileID: 1700545749}
+  s5: {fileID: 150455216}
+  s6: {fileID: 620207859}
+  s7: {fileID: 257253184}
+  s8: {fileID: 1034182807}
+  s9: {fileID: 1172681903}
+  s10: {fileID: 899650910}
 --- !u!1 &1901132698
 GameObject:
   m_ObjectHideFlags: 0

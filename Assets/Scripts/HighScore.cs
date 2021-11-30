@@ -7,6 +7,7 @@ public class HighScore : MonoBehaviour
 {
     public static int highscore;
     public static int highBefore;
+    public static string username;
 
     public Text text;
     Color gold;

@@ -235,6 +235,13 @@ public class tetrisBlock : MonoBehaviour
         }
         if (this.GetHighestLine() >= height - 1)
         {
+            string username = "temp";
+            if(Score.score<HighScore.highscore){
+                Leaderboard.CheckValue(username,Score.score);
+            }
+            else{
+                Leaderboard.CheckValue(HighScore.username,HighScore.highBefore);
+            }
             Pause.QuitGame2();
         }
     }
