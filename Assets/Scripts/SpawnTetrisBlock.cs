@@ -51,6 +51,11 @@ public class SpawnTetrisBlock : MonoBehaviour
     {
     }
 
+    public void end(){
+        singleton = null;
+        singleton2 = null;
+    }
+
     public void NewTetrisBlock(){  //Fait apparaitre un nouveau block a l'endroit du gameObject
         // remplacer la valeur du bloc de n par celui de n+1
         valactuel = valsuiv;
