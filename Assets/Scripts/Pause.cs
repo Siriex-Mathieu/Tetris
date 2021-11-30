@@ -49,10 +49,37 @@ public class Pause : MonoBehaviour
     public void QuitGame()
     {
         SceneManager.LoadScene("StartMenu");
+        try
+        {
+            FindObjectsOfType<SpawnTetrisBlock>()[0].end();
+        }
+        catch (System.Exception)
+        {
+            
+        }
+        try{
+            FindObjectsOfType<SpawnTetrisBlock>()[1].end();
+        }catch{
+            
+        }
+
     }
 
     public static void QuitGame2()
     {
         SceneManager.LoadScene("StartMenu");
+        try
+        {
+            FindObjectsOfType<SpawnTetrisBlock>()[0].end();
+        }
+        catch (System.Exception)
+        {
+            
+        }
+        try{
+            FindObjectsOfType<SpawnTetrisBlock>()[1].end();
+        }catch{
+            
+        }
     }
 }
