@@ -24,6 +24,7 @@ public class playButton : MonoBehaviour,IPointerEnterHandler, IPointerExitHandle
         sr.sprite = hover; //changer d'image quans la souris est dessus
     }
 
+
     public void OnPointerExit(PointerEventData eventData){
         sr.sprite = normal; //changer d'image quans la souris n'est plus dessus
     }
