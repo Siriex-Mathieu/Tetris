@@ -1,36 +1,47 @@
 <?php
-    include_once File::build_path(array("Script", "Script.php"));
-class ControllerConnect
-{
+    class ControllerConnect
+    {
     public static function base(){
         echo "Il n'y a rien ici";
     }
-    public static function signUp(){
-        $isBad = false;
-        $pagetitle = "Créer un compte";
-        $controller = "Connect";
-        $view = "SignUp";
-        require File::build_path(array("view","view.php"));
-    }
-    public static function signedUp(){
-        if($_GET['password'] == $_GET['password']){
-            $isBad = true;
-            $pagetitle = "Créer un compte";
-            $controller = "Connect";
-            $view = "SignUp";
+    
+    public static function list(){
+            $pagetitle = "Liste des scores";
+            $controller = "LeaderBoard";
+            $view = "list";
+            include_once File::build_path(array("model","modelUser.php"));
+            $tab_user = modelUser::GetAllStats();
+            foreach($tab_user as $user){
+                $user->sort();
+            }
+            $tab_v = &$tab_user;
             require File::build_path(array("view","view.php"));
 
-        }
     }
     public static function debug(){
         echo "Test <br>";
-        include_once File::build_path(array("Script","PrefabText","PrefabText.php"));
-        Script::debug_ModifyAllMail();
-        PrefabText::sendMailToAll();
+       
     }
     public static function error(){
         echo "il y a un soucis";
     }
-}
 
+        public static function createTable()
+        {
+            // require_once File::build_path(array("model", "model.php"));
+            
+            //     try {
+            //         // $sql = "CREATE TABLE `siriexm`.`p_score` ( `id_score` INT(10) NOT NULL AUTO_INCREMENT , `pseudo` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `score` INT NOT NULL , PRIMARY KEY (`id_score`(10))) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;";
+            //         $sql = "SELECT * FROM p_score";
+            //         $req_prep = Model::getPDO()->prepare($sql);
+            //         $values = array();
+            //         $req_prep->execute($values);
+            //     } catch (\Throwable $th) {
+            //         if (Conf::getDebug()) {
+            //             echo $th->getMessage() . "<br>"; // affiche un message d'erreur
+            //         }
+            //     }
+            
+        }
+    }
 ?>
