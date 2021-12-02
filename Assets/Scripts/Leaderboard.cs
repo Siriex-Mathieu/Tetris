@@ -24,16 +24,16 @@ public class Leaderboard : MonoBehaviour
         h8.text = PlayerPrefs.GetInt("Highscore8").ToString();
         h9.text = PlayerPrefs.GetInt("Highscore9").ToString();
         h10.text = PlayerPrefs.GetInt("Highscore10").ToString();
-        s1.text = PlayerPrefs.GetString("Highscore");
-        s2.text = PlayerPrefs.GetString("Highscore2");
-        s3.text = PlayerPrefs.GetString("Highscore3");
-        s4.text = PlayerPrefs.GetString("Highscore4");
-        s5.text = PlayerPrefs.GetString("Highscore5");
-        s6.text = PlayerPrefs.GetString("Highscore6");
-        s7.text = PlayerPrefs.GetString("Highscore7");
-        s8.text = PlayerPrefs.GetString("Highscore8");
-        s9.text = PlayerPrefs.GetString("Highscore9");
-        s10.text = PlayerPrefs.GetString("Highscore10");
+        s1.text = PlayerPrefs.GetString("HighscoreS");
+        s2.text = PlayerPrefs.GetString("HighscoreS2");
+        s3.text = PlayerPrefs.GetString("HighscoreS3");
+        s4.text = PlayerPrefs.GetString("HighscoreS4");
+        s5.text = PlayerPrefs.GetString("HighscoreS5");
+        s6.text = PlayerPrefs.GetString("HighscoreS6");
+        s7.text = PlayerPrefs.GetString("HighscoreS7");
+        s8.text = PlayerPrefs.GetString("HighscoreS8");
+        s9.text = PlayerPrefs.GetString("HighscoreS9");
+        s10.text = PlayerPrefs.GetString("HighscoreS10");
     }
 
 
@@ -42,13 +42,16 @@ public class Leaderboard : MonoBehaviour
         valuearray[valuearray.Length/2 -1,1] = t;
         valuearray[valuearray.Length/2 -1,0] = un;
         valuearray = sort(valuearray);
-        Apply();
+        for(int i=0;i<=8;i++){
+            Debug.Log((string)valuearray[i,0]);
+            Apply((string)valuearray[i,0],(int)valuearray[i,1],i);
+        }
     }
 
     public static void Clear(){ // reinitialiser le leaderboard (pour les devs ou le menu options)
         for(int i =2;i<=10;i++){
             PlayerPrefs.SetInt("Highscore" + i, 0);
-            PlayerPrefs.SetString("Highscore" + i, "/");
+            PlayerPrefs.SetString("HighscoreS" + i, "/");
         }
     }
 
@@ -71,11 +74,9 @@ public class Leaderboard : MonoBehaviour
     public static int getHighestNumber(object[,] tab){
         int max = 0;
         int res = 0;
-        int comp = 0;
         for(int i = 0; i< tab.Length/2;i++){
-            comp = (int)tab[i,1];
-            if(comp> max){ 
-                max = comp;
+            if((int)tab[i,1]> max){ 
+                max = (int)tab[i,1];
                 res = i;
             }
         }
@@ -86,16 +87,13 @@ public class Leaderboard : MonoBehaviour
     public static void Init(){
         valuearray = new object[10,2];
         for(int i =0;i<valuearray.Length/2;i++){
-            Debug.Log(i);
-            valuearray[i,0] = PlayerPrefs.GetString("Highscore" + (i+2));
+            valuearray[i,0] = PlayerPrefs.GetString("HighscoreS" + (i+2));
             valuearray[i,1] = PlayerPrefs.GetInt("Highscore" + (i+2));
         }
     }
 
-    public static void Apply(){
-        for(int i =0;i<=8;i++){
-            PlayerPrefs.SetString("Highscore" + (i+2), (string)valuearray[i,0]);
-            PlayerPrefs.SetInt("Highscore" + (i+2), (int)valuearray[i,1]);
-        }
+    public static void Apply(string s, int valeur, int start){
+        PlayerPrefs.SetString("HighscoreS" + (start+2), s);
+        PlayerPrefs.SetInt("Highscore" + (start+2), valeur);
     }
 }
