@@ -236,10 +236,7 @@ public class tetrisBlock : MonoBehaviour
         if (this.GetHighestLine() >= height - 1)
         {
             Intermediaire.setLose(true);
-            while(Intermediaire.lose){
-                Time.timeScale = 0,01;
-            }
-            Time.timeScale = 1;
+            
             if(Score.score<HighScore.highscore){
                 Leaderboard.CheckValue(Intermediaire.submitString,Score.score);
             }

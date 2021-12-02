@@ -9,5 +9,6 @@ public class SubmitButtonController : MonoBehaviour
     public void OnClick(string s){
         Intermediaire.setSubmitString(s);
         Intermediaire.Submit(true);
+        
     }
 }

@@ -16,12 +16,13 @@ public class EndGameController : MonoBehaviour
     }
 
     void pause(){
+        Pause.pause();
         EndGameUI.SetActive(true);
-        Time.timeScale = 0;
     }
 
     void resume(){
+        Intermediaire.setLose(false);
+        Pause.unpause();
         EndGameUI.SetActive(false);
-        Time.timeScale =1;
     }
 }

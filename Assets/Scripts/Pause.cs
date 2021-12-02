@@ -46,6 +46,14 @@ public class Pause : MonoBehaviour
         Paused = false;
     }
 
+    public static void pause(){
+        Paused = true;
+    }
+
+    public static void unpause(){
+        Paused = false;
+    }
+
     public void QuitGame()
     {
         SceneManager.LoadScene("StartMenu");
