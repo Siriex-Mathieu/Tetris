@@ -20,5 +20,6 @@ public class ResetButton : MonoBehaviour
         Leaderboard.Clear();
         HighScore.highscore = 0;
         PlayerPrefs.SetInt("Highscore", 0);
+        PlayerPrefs.SetString("HighscoreS" , "/");
     }
 }

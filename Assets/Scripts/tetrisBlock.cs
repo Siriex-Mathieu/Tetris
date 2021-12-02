@@ -6,8 +6,8 @@ using System;
 
 
 public class tetrisBlock : MonoBehaviour
-{
-
+{   
+    public bool lose = false;
     private float previousTime;
     public float fallTime = 0.8f;//Temps pour la piece de tomber
     private static int height = 20; //Hauteur
@@ -235,9 +235,13 @@ public class tetrisBlock : MonoBehaviour
         }
         if (this.GetHighestLine() >= height - 1)
         {
-            string username = "temp";
+            Intermediaire.setLose(true);
+            while(Intermediaire.lose){
+                Time.timeScale = 0,01;
+            }
+            Time.timeScale = 1;
             if(Score.score<HighScore.highscore){
-                Leaderboard.CheckValue(username,Score.score);
+                Leaderboard.CheckValue(Intermediaire.submitString,Score.score);
             }
             else{
                 Leaderboard.CheckValue(HighScore.username,HighScore.highBefore);
@@ -264,5 +268,9 @@ public class tetrisBlock : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    string endgame(){
+        return " ";
     }
 }
