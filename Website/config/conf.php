@@ -7,13 +7,13 @@ class Conf {
     'hostname' => 'webinfo',
     // A l'IUT, vous avez une BDD nommee comme votre login
     // Sur votre machine, vous devrez creer une BDD
-    'database' => 'siriexm',
+    'database' => 'goyonn',
     // A l'IUT, c'est votre login
     // Sur votre machine, vous avez surement un compte 'root'
-    'login' => 'siriexm',
+    'login' => 'goyonn',
     // A l'IUT, c'est votre mdp (INE par defaut)
     // Sur votre machine personelle, vous avez creez ce mdp a l'installation
-    'password' => '071586272BK'
+    'password' => 'e18Y8uPh'
   );
   
   static private $debug = True; 

@@ -24,8 +24,8 @@
             sort($this->tab_score);
         }
 
-        public static function sorting($a, $b){
-            return $a->getTabScore()[0]-$b->getTabScore()[0];
+        static function sorting($a, $b){
+            return -($a->tab_score[0]-$b->tab_score[0]);
         }
     }
 
