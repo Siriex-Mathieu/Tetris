@@ -9,13 +9,8 @@ public class Intermediaire
     
     Celà est nécéssaire au fonctionnement de l'UI de fin de partie, par exemple. */
 
-    public static bool lose = false;
     public static string submitString;
     public static bool submit = false;
-
-    public static void setLose(bool bi){
-        lose = bi;
-    }
 
     public static void setSubmitString(string s){
         submitString = s;
