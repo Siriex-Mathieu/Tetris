@@ -14,9 +14,4 @@ public class SubmitButtonController : MonoBehaviour
         SceneManager.LoadScene("StartMenu");
     }
 
-    public void ReadStringInput(string s){
-        Debug.Log(s);
-        Intermediaire.submitString = s;
-        Debug.Log(Intermediaire.submitString);
-    }
 }
