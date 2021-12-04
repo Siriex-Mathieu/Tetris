@@ -32,6 +32,7 @@ public class EndGameController : MonoBehaviour
                 PlayerPrefs.SetString("HighscoreS",Intermediaire.submitString);
             }
             Intermediaire.submit = false;
+            PlayerPrefs.SetInt("Score",0);
             SceneManager.LoadScene("StartMenu");
         }
     }
