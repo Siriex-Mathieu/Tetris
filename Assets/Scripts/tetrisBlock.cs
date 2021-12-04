@@ -234,15 +234,9 @@ public class tetrisBlock : MonoBehaviour
             grid[roundedX, roundedY] = children;
         }
         if (this.GetHighestLine() >= height - 1)
-        {
-            Intermediaire.setLose(true);
-            
-            if(Score.score<HighScore.highscore){
-                Leaderboard.CheckValue(Intermediaire.submitString,Score.score);
-            }
-            else{
-                Leaderboard.CheckValue(HighScore.username,HighScore.highBefore);
-            }
+        {   
+            PlayerPrefs.SetInt("Score", Score.score);
+            PlayerPrefs.SetInt("HighBefore", HighScore.highBefore);
             Pause.QuitGame2();
         }
     }

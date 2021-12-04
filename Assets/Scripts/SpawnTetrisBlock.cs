@@ -31,11 +31,12 @@ public class SpawnTetrisBlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        valsuiv2 = Random.Range(0, Tetrominos.Length);
+        valsuiv = Random.Range(0, Tetrominos.Length);
         if(singleton == null && isFirst){
             singleton = new SingletonBlock();
             // initialisation des premiers blocs a placer
-            valsuiv2 = Random.Range(0, Tetrominos.Length);
-            valsuiv = Random.Range(0, Tetrominos.Length);
+            
             NewTetrisBlock();
             // initialiser aléatoirement ints qui définiront l'apparition des 2 tetrisblocks suivants  
             Vector3 positionsuiv = suiv.transform.position;

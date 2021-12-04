@@ -73,9 +73,9 @@ public class Pause : MonoBehaviour
 
     }
 
-    public static void QuitGame2()
+    public static void QuitGame2() // fonction modifiée pour renvoyer à l'UI (seule méthode qui ne fait pas crash unity...)
     {
-        SceneManager.LoadScene("StartMenu");
+        SceneManager.LoadScene("EndGame");
         try
         {
             FindObjectsOfType<SpawnTetrisBlock>()[0].end();
