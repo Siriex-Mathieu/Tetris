@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Main"); // charger la scene n°2 => celle de l'attente
+        SceneManager.LoadScene("GamemodeSelect"); // charger la scene n°2 => celle de l'attente
     }
 
     public static void PlayMulti()
