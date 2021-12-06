@@ -11,6 +11,8 @@ public class SubmitButtonController : MonoBehaviour
     }
 
     public void Quit(){
+        Debug.Log("High = " + PlayerPrefs.GetInt("Highscore").ToString() + " HighB = " + PlayerPrefs.GetInt("HighBefore").ToString());
+        PlayerPrefs.SetInt("Highscore",PlayerPrefs.GetInt("HighBefore"));
         SceneManager.LoadScene("StartMenu");
     }
 
