@@ -19,4 +19,8 @@ public class MainMenu : MonoBehaviour
     public void LeaderBoard(){
         SceneManager.LoadScene("Leaderboard");
     }
+
+    public void leave(){
+        Application.Quit();
+    }
 }
