@@ -8,6 +8,9 @@
             echo $pagetitle; 
         ?>
     </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <?php
         foreach (glob("assets/*/*/*.css") as $css) {
             echo "<link rel='stylesheet' href='$css'>\n";
@@ -25,16 +28,15 @@
 <body>
     <nav class="navbar navbar-light navbar-expand-lg navigation-clean-search">
         <div class="container">
-            <a class="navbar-brand" href="#">Entreprise qui claque</a>
+            <a class="navbar-brand" href="#">Accueil</a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
                 <span class="visually-hidden">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="#">Link 1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Link 2</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link 3</a></li>
                 </ul>
                 <form class="me-auto search-form" target="_self">
                     <div class="d-flex align-items-center">
@@ -74,7 +76,6 @@
         </ul>
         <p class="copyright">Entreprise qui claque © 2021</p>
     </footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

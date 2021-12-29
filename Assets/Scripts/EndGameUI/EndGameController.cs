@@ -49,7 +49,7 @@ public class EndGameController : MonoBehaviour
         Debug.Log("envoi des donnees...");
         WWWForm form = new WWWForm();
         form.AddField("username", username);
-        form.AddField("score", score);
+        form.AddField("score", score.ToString());
         using (UnityWebRequest www = UnityWebRequest.Post("https://webinfo.iutmontp.univ-montp2.fr/~semener/Website/DB/ajoutscore.php",form)){
             yield return www.SendWebRequest();
             if(www.result == UnityWebRequest.Result.ProtocolError || www.result == UnityWebRequest.Result.ConnectionError){
