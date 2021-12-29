@@ -66,6 +66,7 @@ public class Leaderboard : MonoBehaviour
         for(int i = 0;i<tab.Length/2;i++){
             copy[i,0] = tab[getHighestNumber(tab),0];
             copy[i,1] = tab[getHighestNumber(tab),1];
+            tab[getHighestNumber(tab),0] = "/";
             tab[getHighestNumber(tab),1] = 0;
         }
         return copy;
