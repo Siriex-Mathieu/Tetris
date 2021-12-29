@@ -1,4 +1,4 @@
-<?
+<?php
 
 $username = $_POST["username"];
 $score = $_POST["score"];
