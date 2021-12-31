@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 
 
-public class tetrisBlock : MonoBehaviour
+public class Mode1 : MonoBehaviour
 {
 
     private float previousTime;
@@ -22,11 +23,13 @@ public class tetrisBlock : MonoBehaviour
 
     private Settings settings;
 
-
     private static Transform[,] grid = new Transform[width, height]; //Pour les collision entre les block
 
     public Vector3 RotationBlock; //Rotation
 
+    public float timeValue = 180;
+    public GameObject TimeText;
+    Text textTime; 
     
 
     private void init()
@@ -51,6 +54,7 @@ public class tetrisBlock : MonoBehaviour
     void Start()
     {
         init();
+        textTime = TimeText.GetComponent<Text> ();
     }
 
     /**
@@ -60,6 +64,15 @@ public class tetrisBlock : MonoBehaviour
     */
     void Update()
     {
+        textTime.text = timeValue.ToString();
+
+        if (timeValue > 0){
+            timeValue -= Time.deltaTime;
+        }
+        else{
+                Pause.QuitGame2();
+        }
+
         if (settings.modified)
         {
             // Actualisation des touches
