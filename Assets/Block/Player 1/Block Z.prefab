@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4599767171564795871}
-  - component: {fileID: 4599767171564795870}
+  - component: {fileID: -1019848193225109235}
   m_Layer: 0
   m_Name: Block Z
   m_TagString: Untagged
@@ -117,7 +117,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4599767171564795870
+--- !u!114 &-1019848193225109235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
