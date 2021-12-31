@@ -133,8 +133,6 @@ public class tetrisBlock : MonoBehaviour
                 }
             }
         }
-
-
     }
 
 
@@ -265,3 +263,4 @@ public class tetrisBlock : MonoBehaviour
         return " ";
     }
 }
+
