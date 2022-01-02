@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System;
-
+using UnityEngine.UI;
 
 
 public class Mode1 : MonoBehaviour
-{
-
+{   
+    public bool lose = false;
     private float previousTime;
     public float fallTime = 0.8f;//Temps pour la piece de tomber
     private static int height = 20; //Hauteur
@@ -23,14 +22,16 @@ public class Mode1 : MonoBehaviour
 
     private Settings settings;
 
+
     private static Transform[,] grid = new Transform[width, height]; //Pour les collision entre les block
 
     public Vector3 RotationBlock; //Rotation
 
-    public float timeValue = 180;
+    public float timeValue = 10;
+
     public GameObject TimeText;
+
     Text textTime; 
-    
 
     private void init()
     {
@@ -64,14 +65,7 @@ public class Mode1 : MonoBehaviour
     */
     void Update()
     {
-        textTime.text = timeValue.ToString();
-
-        if (timeValue > 0){
-            timeValue -= Time.deltaTime;
-        }
-        else{
-                Pause.QuitGame2();
-        }
+       
 
         if (settings.modified)
         {
@@ -83,6 +77,17 @@ public class Mode1 : MonoBehaviour
 
         if (!Pause.Paused)
         {
+            
+           
+            if (timeValue > 0){
+                timeValue -= Time.deltaTime;
+            }
+            else{
+                print("game finished");
+                //print le score
+                Pause.QuitGame2();
+            }
+
             if (Input.GetKeyDown(gauche))//Appui sur <- 
             {
                 transform.position += new Vector3(-1, 0, 0); //Deplace a gauche
@@ -146,6 +151,8 @@ public class Mode1 : MonoBehaviour
                 }
             }
         }
+
+
     }
 
 
@@ -245,14 +252,9 @@ public class Mode1 : MonoBehaviour
             grid[roundedX, roundedY] = children;
         }
         if (this.GetHighestLine() >= height - 1)
-        {
-            string username = "temp";
-            if(Score.score<HighScore.highscore){
-                Leaderboard.CheckValue(username,Score.score);
-            }
-            else{
-                Leaderboard.CheckValue(HighScore.username,HighScore.highBefore);
-            }
+        {   
+            PlayerPrefs.SetInt("Score", Score.score);
+            PlayerPrefs.SetInt("HighBefore", HighScore.highBefore);
             Pause.QuitGame2();
         }
     }
@@ -275,5 +277,9 @@ public class Mode1 : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    string endgame(){
+        return " ";
     }
 }
