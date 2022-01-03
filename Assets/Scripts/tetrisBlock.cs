@@ -6,19 +6,20 @@ using System;
 
 
 public class tetrisBlock : MonoBehaviour
-{   
+{
     public bool lose = false;
     private float previousTime;
-    public float fallTime = 0.8f;//Temps pour la piece de tomber
+    public float fallTime = 0.5f;//Temps pour la piece de tomber
     private static int height = 20; //Hauteur
     private static int width = 10; //Longueur
 
-    private KeyCode gauche; //Appui sur <- 
-    private KeyCode droite;//Appui sur ->
-    private KeyCode bas;
-    private KeyCode basRapide;
-    private KeyCode rotationD;
-    private KeyCode rotaionG;
+    public bool mainPlayer;
+    private KeyCode gauche = KeyCode.LeftArrow; //Appui sur <- 
+    private KeyCode droite = KeyCode.RightArrow;//Appui sur ->
+    private KeyCode bas = KeyCode.DownArrow;
+    private KeyCode basRapide = KeyCode.RightControl;
+    private KeyCode rotationD = KeyCode.L;
+    private KeyCode rotaionG = KeyCode.M;
 
     private Settings settings;
 
@@ -27,7 +28,7 @@ public class tetrisBlock : MonoBehaviour
 
     public Vector3 RotationBlock; //Rotation
 
-    
+
 
     private void init()
     {
@@ -50,7 +51,15 @@ public class tetrisBlock : MonoBehaviour
     */
     void Start()
     {
-        init();
+        if (mainPlayer)
+        {
+            init();
+        }
+        else
+        {
+            width = 30;
+        }
+
     }
 
     /**
@@ -60,7 +69,7 @@ public class tetrisBlock : MonoBehaviour
     */
     void Update()
     {
-        if (settings.modified)
+        if (mainPlayer && settings.modified)
         {
             // Actualisation des touches
             init();
@@ -72,47 +81,24 @@ public class tetrisBlock : MonoBehaviour
         {
             if (Input.GetKeyDown(gauche))//Appui sur <- 
             {
-                transform.position += new Vector3(-1, 0, 0); //Deplace a gauche
-
-                if (!ValidMove())
-                    transform.position -= new Vector3(-1, 0, 0); //Si peut pas deplace a droite (Annule le movement)
-
+                move(-1, 0, 0); //Deplace a gauche
             }
             else if (Input.GetKeyDown(droite)) //Appui sur ->
             {
-                transform.position += new Vector3(1, 0, 0); //Deplace a droite
-
-                if (!ValidMove())
-                    transform.position -= new Vector3(1, 0, 0);//Si peut pas deplace a gauche (Annule le movement)
-
+                move(1, 0, 0); //Deplace a droite
             }
             else if (Input.GetKeyDown(rotationD))//appui sur D
             {
-                transform.RotateAround(transform.TransformPoint(RotationBlock), new Vector3(0, 0, 1), 90);//Rotation du block a 90° a droite
-                if (!ValidMove())
-                    transform.RotateAround(transform.TransformPoint(RotationBlock), new Vector3(0, 0, 1), -90);//si peut pas 90° a gauche
-
+                rotate(90);
             }
             else if (Input.GetKeyDown(rotaionG))//appui sur Q
             {
-                transform.RotateAround(transform.TransformPoint(RotationBlock), new Vector3(0, 0, 1), -90);//Rotation du block a 90° a gauche
-                if (!ValidMove())
-                    transform.RotateAround(transform.TransformPoint(RotationBlock), new Vector3(0, 0, 1), 90);//si peut pas 90° a droite
-
+                rotate(-90);
             }
 
             else if (Time.time - previousTime > (Input.GetKey(bas) ? fallTime / 10 : fallTime))//Condition si on appuit sur bas ou que le temps de tombe arrive a zero
             {
-                transform.position += new Vector3(0, -1, 0);//Deplace vers le bas
-
-                if (!ValidMove())
-                {
-                    transform.position -= new Vector3(0, -1, 0);//si peut pas monte 
-                    AddToGrid();//regarde si il a un block
-                    CheckForLine();// Regarde si on peut supprimer une ligne
-                    this.enabled = false;//le bolck ne devient plus le block courant = desactiver
-                    FindObjectOfType<SpawnTetrisBlock>().NewTetrisBlock();//Fait spawner un block
-                }
+                down();
                 previousTime = Time.time;//remet de temps par defaut
             }
 
@@ -120,16 +106,7 @@ public class tetrisBlock : MonoBehaviour
             {
                 while (ValidMove())
                 {
-                    transform.position += new Vector3(0, -1, 0);//Deplace vers le bas
-
-                    if (!ValidMove())
-                    {
-                        transform.position -= new Vector3(0, -1, 0);//si peut pas monte 
-                        AddToGrid();//regarde si il a un block
-                        CheckForLine();// Regarde si on peut supprimer une ligne
-                        this.enabled = false;//le bolck ne devient plus le block courant = desactiver
-                        FindObjectOfType<SpawnTetrisBlock>().NewTetrisBlock();//Fait spawner un block
-                    }
+                    down();
                 }
             }
         }
@@ -137,7 +114,42 @@ public class tetrisBlock : MonoBehaviour
 
     }
 
+    private SpawnTetrisBlock getBlock()
+    {
+        if (mainPlayer)
+        {
+            return FindObjectsOfType<SpawnTetrisBlock>()[0];
+        }
+        return FindObjectsOfType<SpawnTetrisBlock>()[1];
+    }
 
+    private void down()
+    {
+        transform.position += new Vector3(0, -1, 0);//Deplace vers le bas
+
+        if (!ValidMove())
+        {
+            transform.position -= new Vector3(0, -1, 0);//si peut pas monte 
+            AddToGrid();//regarde si il a un block
+            CheckForLine();// Regarde si on peut supprimer une ligne
+            this.enabled = false;//le bolck ne devient plus le block courant = desactiver
+            getBlock().NewTetrisBlock();//Fait spawner un block
+        }
+    }
+
+    private void move(int x, int y, int z)
+    {
+        transform.position += new Vector3(x, y, z); //Deplace
+        if (!ValidMove())
+            transform.position += new Vector3(-x, -y, -z); //Si peut pas, fait mouvement inverse
+    }
+
+    private void rotate(int r)
+    {
+        transform.RotateAround(transform.TransformPoint(RotationBlock), new Vector3(0, 0, 1), r);//Rotation du block a r° a droite
+        if (!ValidMove())
+            transform.RotateAround(transform.TransformPoint(RotationBlock), new Vector3(0, 0, 1), -r);//si peut pas r° a gauche
+    }
     /**
         Fonction qui retourne la hauteur de la ligne la plus haute possédant au moins une parti d'un block déjà posé.
     */
@@ -234,7 +246,7 @@ public class tetrisBlock : MonoBehaviour
             grid[roundedX, roundedY] = children;
         }
         if (this.GetHighestLine() >= height - 1)
-        {   
+        {
             PlayerPrefs.SetInt("Score", Score.score);
             PlayerPrefs.SetInt("HighBefore", HighScore.highBefore);
             Pause.QuitGame2();
@@ -261,7 +273,8 @@ public class tetrisBlock : MonoBehaviour
         return true;
     }
 
-    string endgame(){
+    string endgame()
+    {
         return " ";
     }
 }

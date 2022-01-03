@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3156902192673345041}
-  - component: {fileID: 4793548868259339698}
+  - component: {fileID: 5109630534552611493}
   m_Layer: 0
   m_Name: Block Carre
   m_TagString: Untagged
@@ -199,7 +199,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4793548868259339698
+--- !u!114 &5109630534552611493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,7 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lose: 0
-  fallTime: 0.8
+  fallTime: 0.5
+  mainPlayer: 1
   RotationBlock: {x: 0, y: 0, z: 0}
 --- !u!1 &7242016844505833498
 GameObject:

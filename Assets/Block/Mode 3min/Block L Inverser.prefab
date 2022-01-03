@@ -255,7 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5207316265582980488}
-  - component: {fileID: 8030354551373128618}
+  - component: {fileID: 6847980528537004821}
   m_Layer: 0
   m_Name: Block L Inverser
   m_TagString: Untagged
@@ -281,7 +281,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8030354551373128618
+--- !u!114 &6847980528537004821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,7 +294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lose: 0
-  fallTime: 0.8
+  fallTime: 0.5
+  mainPlayer: 1
   RotationBlock: {x: 0, y: 0, z: 0}
 --- !u!1 &7047287177711149565
 GameObject:

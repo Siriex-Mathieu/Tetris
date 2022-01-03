@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5763029187002384315}
-  - component: {fileID: 5763029187002384314}
+  - component: {fileID: 850955379791581554}
   m_Layer: 0
   m_Name: Block T
   m_TagString: Untagged
@@ -199,7 +199,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5763029187002384314
+--- !u!114 &850955379791581554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lose: 0
   fallTime: 0.5
+  mainPlayer: 1
   RotationBlock: {x: 0, y: 0, z: 0}
 --- !u!1 &6116964450658621819
 GameObject:
