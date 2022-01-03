@@ -9,9 +9,12 @@ public class tetrisBlock : MonoBehaviour
 {
     public bool lose = false;
     private float previousTime;
-    public float fallTime = 0.5f;//Temps pour la piece de tomber
+    public float fallTime = 0.8f;//Temps pour la piece de tomber
     private static int height = 20; //Hauteur
-    private static int width = 10; //Longueur
+    private static int mpwidth = 10; //Longueur
+    private static int spwidth = 30; //Longueur
+    
+    
 
     public bool mainPlayer;
     private KeyCode gauche = KeyCode.LeftArrow; //Appui sur <- 
@@ -24,7 +27,8 @@ public class tetrisBlock : MonoBehaviour
     private Settings settings;
 
 
-    private static Transform[,] grid = new Transform[width, height]; //Pour les collision entre les block
+    private static Transform[,] mpgrid = new Transform[mpwidth, height]; //Pour les collision entre les block
+    private static Transform[,] spgrid = new Transform[spwidth, height]; //Pour les collision entre les block
 
     public Vector3 RotationBlock; //Rotation
 
@@ -55,11 +59,6 @@ public class tetrisBlock : MonoBehaviour
         {
             init();
         }
-        else
-        {
-            width = 30;
-        }
-
     }
 
     /**
@@ -158,9 +157,9 @@ public class tetrisBlock : MonoBehaviour
 
         for (int i = height - 1; i > 0; i--)
         {
-            for (int j = 0; j < width; j++)
+            for (int j = 0; j < getwidth(); j++)
             {
-                if (grid[j, i] != null)
+                if (getGrid()[j, i] != null)
                     return i;
             }
         }
@@ -193,9 +192,9 @@ public class tetrisBlock : MonoBehaviour
 */
     bool HasLine(int i)
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j < getwidth(); j++)
         {
-            if (grid[j, i] == null)
+            if (getGrid()[j, i] == null)
                 return false;
         }
         return true;
@@ -206,10 +205,10 @@ public class tetrisBlock : MonoBehaviour
 */
     void DeleteLine(int i)
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j < getwidth(); j++)
         {
-            Destroy(grid[j, i].gameObject);//Pas besoin de dire ce que ça fait non ?
-            grid[j, i] = null;
+            Destroy(getGrid()[j, i].gameObject);//Pas besoin de dire ce que ça fait non ?
+            getGrid()[j, i] = null;
         }
 
 
@@ -222,13 +221,13 @@ public class tetrisBlock : MonoBehaviour
     {
         for (int y = i; y < height; y++)
         {
-            for (int j = 0; j < width; j++)
+            for (int j = 0; j < getwidth(); j++)
             {
-                if (grid[j, y] != null)
+                if (getGrid()[j, y] != null)
                 {
-                    grid[j, y - 1] = grid[j, y]; //Remplace la ligne endessous par la courante
-                    grid[j, y] = null;
-                    grid[j, y - 1].transform.position -= new Vector3(0, 1, 0); // Deplace la ligne du dessous en haut
+                    getGrid()[j, y - 1] = getGrid()[j, y]; //Remplace la ligne endessous par la courante
+                    getGrid()[j, y] = null;
+                    getGrid()[j, y - 1].transform.position -= new Vector3(0, 1, 0); // Deplace la ligne du dessous en haut
                 }
             }
         }
@@ -243,7 +242,7 @@ public class tetrisBlock : MonoBehaviour
         {
             int roundedX = Mathf.RoundToInt(children.transform.position.x);//Recupere le x du block courant
             int roundedY = Mathf.RoundToInt(children.transform.position.y);//Recupere le y du block courant
-            grid[roundedX, roundedY] = children;
+            getGrid()[roundedX, roundedY] = children;
         }
         if (this.GetHighestLine() >= height - 1)
         {
@@ -263,14 +262,21 @@ public class tetrisBlock : MonoBehaviour
             int roundedX = Mathf.RoundToInt(children.transform.position.x);//Recupere le x du block courant
             int roundedY = Mathf.RoundToInt(children.transform.position.y);//Recupere le y du block courant
 
-            if (roundedX < 0 || roundedX >= width || roundedY < 0 || roundedY >= height) //Verifie si Longueur = 0<block<20 et Largeur = 0<block<10
+            if (roundedX < ((mainPlayer)?0:20) || roundedX >= getwidth() || roundedY < 0 || roundedY >= height) //Verifie si Longueur = 0<block<20 et Largeur = 0<block<10
             {
                 return false;
             }
-            if (grid[roundedX, roundedY] != null)//Verifi si a la position du mouvement il y a pas de block déja poser
+            if (getGrid()[roundedX, roundedY] != null)//Verifi si a la position du mouvement il y a pas de block déja poser
                 return false;
         }
         return true;
+    }
+
+    private Transform[,] getGrid(){
+        return (mainPlayer?mpgrid:spgrid);
+    }
+    private int getwidth(){
+        return (mainPlayer?mpwidth:spwidth);
     }
 
     string endgame()
