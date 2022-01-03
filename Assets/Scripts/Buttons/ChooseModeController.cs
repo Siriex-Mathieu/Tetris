@@ -14,7 +14,7 @@ public class ChooseModeController : MonoBehaviour
     }
 
     public void Play3min(){
-        Debug.Log("Not yet implemented");
+        SceneManager.LoadScene("mode1");
     }
 
     public void StartMenu(){
