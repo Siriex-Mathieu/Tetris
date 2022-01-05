@@ -23,6 +23,8 @@ public class Timer : MonoBehaviour
         countTime.text = timeValue.ToString("0");
 
             if (timeValue <= 0){
+                PlayerPrefs.SetInt("Score", Score.score);
+                PlayerPrefs.SetInt("HighBefore", HighScore.highBefore);
                 Pause.QuitGame2();
             }
     }
