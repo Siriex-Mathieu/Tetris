@@ -35,8 +35,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tableau des scores</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Téléchargement</a></li>
                 </ul>
                 <form class="me-auto search-form" target="_self">
                     <div class="d-flex align-items-center">
@@ -70,9 +70,9 @@
         </div>
         <ul class="list-inline">
             <li class="list-inline-item"><a href="#">Accueil</a></li>
-            <li class="list-inline-item"><a href="#">Argent</a></li>
-            <li class="list-inline-item"><a href="#">T ki?</a></li>
-            <li class="list-inline-item"><a href="#">Sécurité privé niveau Chine</a></li>
+            <li class="list-inline-item"><a href="#">Financement</a></li>
+            <li class="list-inline-item"><a href="#">Qui nous sommes</a></li>
+            <li class="list-inline-item"><a href="#">CGU & RGPD</a></li>
         </ul>
         <p class="copyright">Entreprise qui claque © 2021</p>
     </footer>
