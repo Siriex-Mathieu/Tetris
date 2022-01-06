@@ -9,8 +9,12 @@ class Controller
         include_once File::build_path(array("model", "modelUser.php"));
         $tab_user = modelUser::GetBestStats();
         self::sortUserArray($tab_user);
+        $tab_v1 = array();
+        self::userArrayToListableArray($tab_user, $tab_v1);
         $tab_v = array();
-        self::userArrayToListableArray($tab_user, $tab_v);
+        $tab_v[0] = $tab_v1[0];
+        $tab_v[1] = $tab_v1[1];
+        $tab_v[2] = $tab_v1[2];
 
         require File::build_path(array("view", "view.php"));
     }

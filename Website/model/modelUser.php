@@ -35,7 +35,7 @@ class modelUser
 
     public static function getBestLines()
     {
-        $rep = Model::getPDO()->query('SELECT * FROM p_bestScore');
+        $rep = Model::getPDO()->query('SELECT * FROM p_score');
         $rep->setFetchMode(PDO::FETCH_CLASS, 'modelUser');
         $tab_line = $rep->fetchAll();
         return $tab_line;

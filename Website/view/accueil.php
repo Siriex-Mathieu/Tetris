@@ -7,8 +7,7 @@ foreach ($tab_v as $v)
             <div style="width: 33%;"><span class="d-md-flex justify-content-md-end" style="padding-right: 1em;">  '. $v['Score'] .' </span></div>
         </div>
         ';?>
-        <!-- TODO mettre ce lien du dossier à download -->
-<button href="https://www.mediafire.com/file/1gggad1by7n0c6f/test.zip/file" class="btn btn-primary d-md-flex mx-auto" data-bss-hover-animate="pulse" id="button1" type="button"><img style="width: 20px;height: 20px;transform: rotate(270deg) translateX(-2px);" src="assets/img/arrowwhite.gif"><span><strong>Télecharger</strong></span><img style="width: 20px;height: 20px;transform: rotate(90deg) translateX(2px);" src="assets/img/arrowwhite.gif"></button>
+<button  class="btn btn-primary d-md-flex mx-auto" data-bss-hover-animate="pulse" id="button1" type="button"><img style="width: 20px;height: 20px;transform: rotate(270deg) translateX(-2px);" src="assets/img/arrowwhite.gif"><span><strong><a href="https://www.mediafire.com/file/1gggad1by7n0c6f/test.zip/file">Télecharger</a></strong></span><img style="width: 20px;height: 20px;transform: rotate(90deg) translateX(2px);" src="assets/img/arrowwhite.gif"></button>
     <script src="assets/js/bs-init.js"></script>
 
         <!-- https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1604646-creez-des-liens#/id/r-1609721 -->
