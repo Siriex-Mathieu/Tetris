@@ -45,7 +45,7 @@
                         </label>
                         <input class="form-control search-field" type="search" id="search-field" name="search">
                     </div>
-                </form><a class="btn btn-light action-button" role="button" href="#">Action </a>
+                </form>
             </div>
         </div>
     </nav>
