@@ -130,13 +130,13 @@ public class tetrisBlockJ2 : MonoBehaviour
             }
         }
 
-        Score.addScore(a);
+        Score2.addScore(a);
 
     }
 
     bool HasLine(int i)//Verifie si une ligne est complete
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 20; j < width; j++)
         {
             if (grid[j, i] == null)
                 return false;
@@ -146,7 +146,7 @@ public class tetrisBlockJ2 : MonoBehaviour
 
     void DeleteLine(int i)//Supprime la ligne
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 20; j < width; j++)
         {
             Destroy(grid[j, i].gameObject);
             grid[j, i] = null;
